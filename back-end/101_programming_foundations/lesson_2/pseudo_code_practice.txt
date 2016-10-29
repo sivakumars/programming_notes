@@ -1,0 +1,59 @@
+1. a method that returns the sum of two integers
+
+CASUAL
+- Given two integers
+- Add the integers
+- Return the result
+
+FORMAL
+# Given two integers (integer1, integer2)
+
+SET sum = integer1 + integer2
+
+PRINT sum
+
+2. a method that takes an array of strings, and returns a string that is all
+those strings concatenated together
+
+CASUAL
+- Given an array of strings
+- Loop through the array and grab each string individually
+- Create a new string and add each individual string to the end of it
+- After the loop is finished, return the resulting string
+
+FORMAL
+# Given an array of strings (str_array)
+
+SET new_string = nothing
+
+WHILE iterator < length of str_array
+  SET new_string = new_string + value within str+array at space "iterator"
+  go to the next iteration
+  iterator = iterator + 1
+
+PRINT new_string
+
+3. a method that takes an array of integers and returns a new array with
+every other element
+
+CASUAL
+- Given an array of integers
+- Create a new empty array
+- Loop through the array
+  - if the iterator is odd, add the value to the new array
+  - else, go to the next iteration
+- Return the new array
+
+FORMAL
+# Given an array of strings (int_array)
+
+SET new_array = nothing
+
+WHILE iterator < length of int_array
+  if iterator is odd
+    Add the value of int_array at "iterator" to the new array
+  else
+    go to the next iteration
+  iterator = iterator + 1
+
+PRINT new_array
