@@ -1,3 +1,5 @@
+require 'pry'
+
 WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # rows
                 [[2, 5, 8], [1, 4, 7], [3, 6, 9]] + # cols
                 [[1, 5, 9], [3, 5, 7]]              # diagonals
@@ -41,7 +43,7 @@ end
 def player_places_piece!(brd)
   square = ''
   loop do
-    prompt "Choose a square (#{empty_squares(brd).join(', ')}):"
+    prompt "Choose a square: #{joinor(brd)}."
     square = gets.chomp.to_i
     break if empty_squares(brd).include?(square)
     prompt "Sorry, that's not a valid choice."
@@ -69,6 +71,21 @@ def detect_winner(brd)
     return 'Computer' if brd.values_at(*line).count(COMPUTER_MARKER) == 3
   end
   nil
+end
+
+def joinor(arr, delimeter = ', ', word = 'or')
+  choices = ""
+  empty_squares = empty_squares(arr)
+  empty_squares.each_with_index do |square, index|
+    choices += if empty_squares.size == 1
+                 "#{square}"
+               elsif index < empty_squares.size - 1
+                 "#{square}#{delimeter}"
+               else
+                 "#{word} #{square}"
+               end
+  end
+  choices
 end
 
 loop do
