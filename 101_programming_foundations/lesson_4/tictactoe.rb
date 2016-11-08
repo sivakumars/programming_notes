@@ -7,6 +7,8 @@ INITIAL_MARKER = ' '.freeze
 PLAYER_MARKER = 'X'.freeze
 COMPUTER_MARKER = 'O'.freeze
 FIRST_MOVE = 'choose'.freeze
+MIDDLE_SQUARE = 5.freeze
+SERIES_WIN_TOTAL = 5.freeze
 
 def prompt(msg)
   puts "=> #{msg}"
@@ -74,8 +76,8 @@ def computer_places_piece!(brd)
              winning_square(brd)
            elsif immediate_threat?(brd)
              threatened_square(brd)
-           elsif brd[5] == INITIAL_MARKER
-             5
+           elsif brd[MIDDLE_SQUARE] == INITIAL_MARKER
+             MIDDLE_SQUARE
            else
              empty_squares(brd).sample
            end
@@ -140,9 +142,9 @@ def update_score(player_score, computer_score, winner)
 end
 
 def detect_series_winner(player_score, computer_score)
-  if player_score == 5
+  if player_score == SERIES_WIN_TOTAL
     return 'Player'
-  elsif computer_score == 5
+  elsif computer_score == SERIES_WIN_TOTAL
     return 'Computer'
   end
   nil
@@ -177,10 +179,10 @@ loop do # main loop
         first_input = gets.chomp
 
         current_player = if first_input.downcase.start_with?('p')
-                  'player'
-                elsif first_input.downcase.start_with?('c')
-                  'computer'
-                end
+                           'player'
+                         elsif first_input.downcase.start_with?('c')
+                           'computer'
+                         end
 
         break if first_input.downcase.start_with?('p', 'c')
         prompt "That's not a valid choice."
