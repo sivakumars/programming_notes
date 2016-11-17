@@ -1,226 +1,166 @@
 ## Question 1
 
-# def short_long_short(str1, str2)
-#   sorted_strings = [str1, str2].sort_by { |str| str.length }
-#   sorted_strings[0] + sorted_strings[1] + sorted_strings[0]
+# def ascii_value(string)
+#   ascii_sum = 0
+#   string.each_char do |char|
+#     ascii_sum += char.ord
+#   end
+#   ascii_sum
 # end
 #
-# puts short_long_short('abc', 'defgh') == "abcdefghabc"
-# puts short_long_short('abcde', 'fgh') == "fghabcdefgh"
-# puts short_long_short('', 'xyz') == "xyz"
+# puts ascii_value('Four score')
+# puts ascii_value('Launch School')
+# puts ascii_value('a')
+# puts ascii_value('')
 
 ## Question 2
 
-# def century(year)
-#   century = year / 100
-#   century += 1 unless year.to_s[-1] == '0'
-#   century = century.to_s
+# MINUTES_PER_HOUR = 60
+# HOURS_PER_DAY = 24
 #
-#   suffix =
-#     if century[-2..-1] == '11' || century[-2..-1] == '12' || century[-2..-1] == '13'
-#       'th'
-#     elsif century[-1] == '1'
-#       'st'
-#     elsif century[-1] == '2'
-#       'nd'
-#     elsif century[-1] == '3'
-#       'rd'
-#     else
-#       'th'
-#     end
-#
-#   century + suffix
+# def time_of_day(number)
+#   hours, minutes = number.divmod(MINUTES_PER_HOUR)
+#   if number > 0
+#     hours = hours % HOURS_PER_DAY
+#   elsif number < 0
+#     hours = -hours % HOURS_PER_DAY
+#     hours = (0..23).to_a[-hours]
+#   end
+#   "#{format("%02d", hours)}:#{format("%02d", minutes)}"
 # end
 #
-# puts century(2000)
-# puts century(2001)
-# puts century(1965)
-# puts century(256)
-# puts century(5)
-# puts century(10103)
-# puts century(1052)
-# puts century(1127)
-# puts century(11201)
+# puts time_of_day(0)
+# puts time_of_day(-3)
+# puts time_of_day(35)
+# puts time_of_day(-1437)
+# puts time_of_day(3000)
+# puts time_of_day(800)
+# puts time_of_day(-4231)
 
 ## Question 3
 
-# def leap_year?(year)
-#   if year % 400 == 0
-#     true
-#   elsif year % 100 == 0
-#     false
-#   else
-#     year % 4 == 0
-#   end
-# end
-
-# def leap_year?(year)
-#   first_test = year % 100 != 0 if year % 4 == 0
-#   second_test =
-#     if year % 100 == 0 && !first_test
-#       year % 400 == 0
-#     else
-#       !!first_test
-#     end
+# MINUTES_PER_HOUR = 60
+# HOURS_PER_DAY = 24
+# MINUTES_PER_DAY = MINUTES_PER_HOUR * HOURS_PER_DAY
+#
+# def after_midnight(time)
+#   hours, minutes = time.split(':').map(&:to_i)
+#   (hours * MINUTES_PER_HOUR + minutes) % MINUTES_PER_DAY
 # end
 #
-# puts leap_year?(2016) == true
-# puts leap_year?(2015) == false
-# puts leap_year?(2100) == false
-# puts leap_year?(2400) == true
-# puts leap_year?(240000) == true
-# puts leap_year?(240001) == false
-# puts leap_year?(2000) == true
-# puts leap_year?(1900) == false
-# puts leap_year?(1752) == true
-# puts leap_year?(1700) == false
-# puts leap_year?(1) == false
-# puts leap_year?(100) == false
-# puts leap_year?(400) == true
+# def before_midnight(time)
+#   (MINUTES_PER_DAY - after_midnight(time)) % MINUTES_PER_DAY
+# end
+#
+# puts after_midnight('00:00')
+# puts before_midnight('00:00')
+# puts after_midnight('12:34')
+# puts before_midnight('12:34')
+# puts after_midnight('24:00')
+# puts before_midnight('24:00')
 
 ## Question 4
 
-# def gregorian_leap_year?(year)
-#   if year % 400 == 0
-#     true
-#   elsif year % 100 == 0
-#     false
-#   else
-#     year % 4 == 0
+# def swap(words)
+#   result = words.split.each do |word|
+#     swaps = [word[0], word[-1]]
+#     word[0] = swaps[1]
+#     word[-1] = swaps[0]
 #   end
+#   result.join(' ')
 # end
 #
-# def leap_year?(year)
-#   if year >= 1752
-#     gregorian_leap_year?(year)
-#   else
-#     year % 4 == 0
-#   end
-# end
-#
-# puts leap_year?(2016) == true
-# puts leap_year?(2015) == false
-# puts leap_year?(2100) == false
-# puts leap_year?(2400) == true
-# puts leap_year?(240000) == true
-# puts leap_year?(240001) == false
-# puts leap_year?(2000) == true
-# puts leap_year?(1900) == false
-# puts leap_year?(1752) == true
-# puts leap_year?(1700) == true
-# puts leap_year?(1) == false
-# puts leap_year?(100) == true
-# puts leap_year?(400) == true
+# puts swap('Oh what a wonderful day it is')
+# puts swap('Abcde')
+# puts swap('a')
 
 ## Question 5
 
-# def multisum(max_value)
-#   multiples = []
-#   (1..max_value).each_entry do |number|
-#     multiples << number if (number % 3 == 0 || number % 5 == 0)
-#   end
-#   multiples.reduce(:+)
+# def cleanup(text)
+#   text.gsub(/[^a-z]/i, ' ').squeeze(' ')
 # end
 #
-# puts multisum(3)
-# puts multisum(5)
-# puts multisum(10)
-# puts multisum(1000)
+# puts cleanup("---what's my +*& line?")
 
 ## Question 6
 
-# def running_total(numbers)
-#   total = 0
-#   sums = []
-#   numbers.each do |number|
-#     total = total + number
-#     sums << total
+# def word_sizes(words)
+#   counts = Hash.new(0)
+#   words.split.each do |word|
+#     counts[word.length] += 1
 #   end
-#   sums
-# end
-
-# def running_total(numbers)
-#   sum = 0
-#   numbers.map do |number|
-#     sum += number
-#   end
+#   counts
 # end
 #
-# puts running_total([2, 5, 13]) == [2, 7, 20]
-# puts running_total([14, 11, 7, 15, 20]) == [14, 25, 32, 47, 67]
-# puts running_total([3]) == [3]
-# puts running_total([]) == []
+# puts word_sizes('Four score and seven.')
+# puts word_sizes('Hey diddle diddle, the cat and the fiddle!')
+# puts word_sizes("What's up doc?")
+# puts word_sizes('')
 
 ## Question 7
 
-# DIGITS = { '0' => 0, '1' => 1, '2' => 2, '3' => 3, '4' => 4, '5' => 5, '6' => 6, '7' => 7, '8' => 8, '9' => 9 }
-#
-# def string_to_integer(string)
-#   digits = string.chars.map { |char| DIGITS[char] }
-#   value = 0
-#   multiplier = 1
-#   digits.reverse.each do |digit|
-#     value += multiplier * digit
-#     multiplier *= 10
+# def word_sizes(words)
+#   counts = Hash.new(0)
+#   words.split.each do |word|
+#     word.gsub!(/[^a-z]/i, '')
+#     counts[word.length] += 1
 #   end
-#   value
+#   counts
 # end
-
-# puts string_to_integer('4321')
-# puts string_to_integer('570')
+#
+# puts word_sizes('Four score and seven.')
+# puts word_sizes('Hey diddle diddle, the cat and the fiddle!')
+# puts word_sizes("What's up doc?")
+# puts word_sizes('')
 
 ## Question 8
 
-# SIGNS = { '+' => 1, '-' => -1 }
+# WORDS_HASH = {0=>"zero",1=>"one",2=>"two",3=>"three",4=>"four",5=>"five",6=>"six",7=>"seven",8=>"eight",9=>"nine",
+#                   10=>"ten",11=>"eleven",12=>"twelve",13=>"thirteen",14=>"fourteen",15=>"fifteen",16=>"sixteen",
+#                    17=>"seventeen", 18=>"eighteen",19=>"nineteen"}
 #
-# def string_to_signed_integer(string)
-#   if string[0].start_with?('+', '-')
-#     multiplier = SIGNS[string[0]]
-#     string[0] = ''
-#   else
-#     multiplier = 1
-#   end
-#
-#   string_to_integer(string) * multiplier
+# def alphabetic_number_sort(numbers)
+#   numbers_in_english = numbers.map { |number| WORDS_HASH[number] }
+#   numbers_in_english.sort.map { |number| WORDS_HASH.key(number) }
 # end
 #
-# puts string_to_signed_integer('4321')
-# puts string_to_signed_integer('-570')
-# puts string_to_signed_integer('+100')
+# p alphabetic_number_sort((0..19).to_a)
 
 ## Question 9
 
-# DIGITS = { '0' => 0, '1' => 1, '2' => 2, '3' => 3, '4' => 4, '5' => 5, '6' => 6, '7' => 7, '8' => 8, '9' => 9 }
+# def crunch(string)
+#   string.squeeze
+# end
 
-# def integer_to_string(integer)
-#   return '0' if integer == 0
-#
-#   digits = []
-#   while integer > 0
-#     digits << integer % 10
-#     integer /= 10
+# def crunch(text)
+#   index = 0
+#   crunch_text = ''
+#   while index <= text.length - 1
+#     crunch_text << text[index] unless text[index] == text [index + 1]
+#     index += 1
 #   end
-#
-#   digits.map { |digit| DIGITS.key(digit) }
-#   digits.reverse.join
+#   crunch_text
 # end
 #
-# # puts integer_to_string(4321) == '4321'
-# # puts integer_to_string(0) == '0'
-# # puts integer_to_string(5000) == '5000'
+# puts crunch('ddaaiillyy ddoouubbllee')
+# puts crunch('4444abcabccba')
+# puts crunch('ggggggggggggggg')
+# puts crunch('a')
+# puts crunch('')
+
+## Question 10
+
+# def print_in_box(message)
 #
-# ## Question 10
+#   dashes = '-' * message.length
+#   spaces = ' ' * message.length
 #
-# def signed_integer_to_string(integer)
-#   if integer > 0
-#     '+' + integer_to_string(integer)
-#   elsif integer < 0
-#     '-' + integer_to_string(-integer)
-#   else
-#     '0'
-#   end
+#   puts "+-#{dashes}-+"
+#   puts "| #{spaces} |"
+#   puts "| #{messages} |"
+#   puts "| #{spaces} |"
+#   puts "+-#{dashes}-+"
 # end
 #
-# puts signed_integer_to_string(4321) == '+4321'
-# puts signed_integer_to_string(-123) == '-123'
-# puts signed_integer_to_string(0) == '0'
+# print_in_box('To boldly go where no one has gone before.')
+# print_in_box('')
