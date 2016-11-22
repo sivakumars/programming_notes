@@ -127,31 +127,122 @@
 
 ## Question 6
 
-# Rule: Modify previous exercise to ignore non-alpha characters when
-# deciding whether to stagger case
+# Input: string
+# Output: string where every other letter is uppercase, but skip non-alpha
+# characters
+# Model:
+# - iterate through characters, if the letter is in uppers or lowers, upcase
+# it. if not, skip it.
 
-UPPERS = ('A'..'Z').to_a
-LOWERS = ('a'..'z').to_a
+# LETTERS = ('A'..'Z').to_a + ('a'..'z').to_a
+#
+# def staggered_case(words)
+#   result = ''
+#   needs_upper = true
+#
+#   words.each_char do |char|
+#     if LETTERS.include?(char)
+#       if needs_upper
+#         result += char.upcase
+#       else
+#         result += char.downcase
+#       end
+#       needs_upper = !needs_upper
+#     else
+#       result += char
+#     end
+#   end
+#   result
+# end
+#
+# puts staggered_case('I Love Launch School!')
+# puts staggered_case('ALL CAPS')
+# puts staggered_case('ignore 77 the 444 numbers')
 
-def staggered_case(words)
-  result = ''
-  needs_upper = true
+## Question 7
 
-  words.each_char do |char|
-    if LOWERS.include?(char) && needs_upper
-      result += char.upcase
-      needs_upper = !needs_upper
-    elsif UPPERS.include?(char) && needs_upper
-      result += char.downcase
-      needs_upper = !needs_upper
-    else
-      result += char
-    end
-  end
+# Input: array of integers
+# Output: float to 3 decimal places
+# Rules:
+# - multiply all elements of array
+# - divide result by number of entries in array
+# - print the result rounded to 3 decimals
+# Model:
+# - might be able to use a method called mean or average
+# - use format or round to display 3 decimal places
+# - might need to convert numbers to float
 
-  result
-end
+# def show_multiplicative_average(numbers)
+#   result = numbers.reduce(:*).to_f / numbers.size
+#   puts "The result is #{format("%.3f", result)}"
+# end
+#
+# show_multiplicative_average([3, 5])
+# show_multiplicative_average([2, 5, 7, 11, 13, 17])
 
-puts staggered_case('I Love Launch School!')
-puts staggered_case('ALL_CAPS')
-puts staggered_case('ignore 77 the 444 numbers')
+## Question 8
+
+# Input: two arrays of numbers
+# Output: array of numbers
+# Rules:
+# - each array has same no. of elements
+# - output array should place product of elements at each index
+# Model:
+# - loop through indices from 0 to array1.size
+# - output product into new array
+
+# def multiply_list(array1, array2)
+#   index = 0
+#   products = []
+#   while index < array1.size
+#     products << array1[index] * array2[index]
+#     index +=1
+#   end
+#   products
+# end
+#
+# def multiply_list(array1, array2)
+#   array1.zip(array2).map { |elements| elements.reduce(:*) }
+# end
+#
+# p multiply_list([3, 5, 7], [9, 10, 11])
+
+## Question 9
+#
+# Input: two arrays of numbers
+# Output: array of numbers
+# Rules:
+# - multiply every element of one array by an element of the other one
+# - sort results from smallest to largest
+# Model:
+# - iterate through each array.
+
+# def multiply_all_pairs(array1, array2)
+#   product_pairs = []
+#   array1.each do |element1|
+#     array2.each do |element2|
+#       product_pairs << element1 * element2
+#     end
+#   end
+#   product_pairs.sort
+# end
+#
+# p multiply_all_pairs([2, 4], [4, 3, 1, 2])
+
+## Question 10
+
+# Input: string of words
+# Output: string (last word in the string)
+# Rules:
+# - words are any sequence of non-blank characters
+# - input string will always have at least 2 words
+# Model:
+# - split string into array of words
+# - return 2nd to last element in the array
+
+# def penultimate(words)
+#   words.split[-2]
+# end
+#
+# puts penultimate('last word')
+# puts penultimate('Launch School is great!')
