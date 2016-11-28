@@ -170,10 +170,10 @@
 #     - take last value in array, use times, and concat first value in array
 #   - flatten result of the map
 
-def buy_fruit(list)
-  list.map do |fruit, quantity|
-    quantity.times.map { fruit }
-  end.flatten
-end
-#
+# def buy_fruit(list)
+#   list.map do |fruit, quantity|
+#     quantity.times.map { fruit }
+#   end.flatten
+# end
+
 # p buy_fruit([["apples", 3], ["orange", 1], ["bananas", 2]])
