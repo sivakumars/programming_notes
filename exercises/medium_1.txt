@@ -127,5 +127,64 @@ Steps:
 
 # Exercise 7
 
+Write a method that takes a sentence string as input and returns a new string that contains the original string with any sequence of the words 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine' converted to a string of digits. 
 
+Input: string of words
+Output: string of words with numbers converted to string of digits
 
+Steps:
+- Split string (by space) into words
+- Loop through words
+	- If word is contained in digit hash, replace with corresopnding digit
+	- If not, do nothing
+- Return joined string. 
+
+- Create hash constant with number words (i.e. one) as keys and digits (i.e. '1') as values. 
+- Split string 
+- Loop on words
+	- If word is a key in hash constant, replace with hash value
+	- else, do nothing
+- Join the result and return
+
+Issue: If number has punctuation after it, it doesn't match anything in the digit conversion.
+
+- Check for trailing punctuation
+- Remove last character
+- Check if word includes
+- Add last character
+
+# Exercise 8
+
+Write a recursive method that computes the nth Fibonacci number, where nth is an argument to the method. 
+
+Input: number
+Output: number
+Rules:
+- use recursion
+- make sure to have an ending condition (e.g. n == 1)
+- Fibonacci numbers: 1, 1, 2, 3, 5..
+
+Steps:
+- if n == 1 or n == 0, return 1
+- else:
+	- fibonacci(n-1) + fibonacci(n-2)
+
+# Exercise 9
+
+Steps:
+- initalize array as [1, 1]
+- sum the array and push the value to the array
+- do this until array.size = n
+
+# Exercise 10
+
+Compute a method that returns the last digit of the nth Fibonacci number.
+
+Input: number (nth number in Fib sequence)
+Output: digit (last digit of value of nth number)
+Steps:
+- Calculate Fibonacci sequence
+- Convert number to string
+- Split into chars
+- Select last character
+- Convert to integer and return

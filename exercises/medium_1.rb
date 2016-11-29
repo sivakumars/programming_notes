@@ -125,3 +125,75 @@
 # minilang('4 PUSH PUSH 7 MOD MULT PRINT ')
 # minilang('-3 PUSH 5 SUB PRINT')
 # minilang('6 PUSH')
+
+## Exercise 7
+
+# DIGIT_ARRAY = [ 'zero' , 'one', 'two', 'three', 'four', 'five', 'six',
+#                      'seven', 'eight', 'nine'].freeze
+#
+# def word_to_digit(sentence)
+#   sentence.split.map do |word|
+#     punctuation = ''
+#     word, punctuation = word[0..-2], word[-1] if word[-1] =~ /[[:punct:]]/
+#     if DIGIT_ARRAY.include?(word)
+#       DIGIT_ARRAY.index(word).to_s + punctuation
+#     else
+#       word + punctuation
+#     end
+#   end.join(' ')
+# end
+#
+# puts word_to_digit('Please call me at five five five one two three four. Thanks.')
+
+## Exercise 8
+
+# def fibonacci(n)
+#   return 1 if n <= 2
+#   fibonacci(n-1) + fibonacci(n-2)
+# end
+#
+# puts fibonacci(1) == 1
+# puts fibonacci(2) == 1
+# puts fibonacci(3) == 2
+# puts fibonacci(4) == 3
+# puts fibonacci(5) == 5
+# puts fibonacci(12) == 144
+# puts fibonacci(20) == 6765
+
+## Exercise 9
+
+# def fibonacci(n)
+#   return 1 if n <= 2
+#   numbers = [1, 1]
+#   while numbers.size < n
+#     numbers << numbers[-1] + numbers[-2]
+#   end
+#   numbers[n-1]
+# end
+
+# puts fibonacci(20)
+# puts fibonacci(100)
+# puts fibonacci(100_001)
+
+## Exercise 10
+
+# def fibonacci_last(n)
+#   fibonacci(n).to_s[-1].to_i
+# end
+#
+# puts fibonacci_last(15)        # -> 0  (the 15th Fibonacci number is 610)
+# puts fibonacci_last(20)        # -> 5 (the 20th Fibonacci number is 6765)
+# puts fibonacci_last(100)       # -> 5 (the 100th Fibonacci number is 354224848179261915075)
+# puts fibonacci_last(100_001)   # -> 1 (this is a 20899 digit number)
+# puts fibonacci_last(1_000_007) # -> 3 (this is a 208989 digit number)
+# puts fibonacci_last(123456789) # -> 4
+
+# def fibonacci_last(nth)
+#   last_2 = [1, 1]
+#   3.upto(nth) do
+#     last_2 = [last_2.last, last_2.reduce(:+) % 10]
+#   end
+#   last_2.last
+# end
+#
+# puts fibonacci_last(123456789)
