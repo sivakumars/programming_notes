@@ -1,0 +1,49 @@
+## Exercise 1
+
+Input: text file
+Output:
+- sentence (longest in paragraph)
+- number (number of words in sentence)
+Rules:
+- any sequence of chars that isn't space or . ! ? is a word.
+
+Steps:
+- Open file from disk
+- Read file into a string
+- Split string on spaces
+- Loop through array of words
+	- Add each word to a new array
+	- If the word ends in a . ? ! then create a new array after adding that word
+- Loop through array of setences
+	- count number of words in sentence
+	- store sentence in variable
+	- compare to next sentence
+	- store sentence with higher count
+- Return sentence and sentence count
+
+Steps:
+- Read file into string
+- Walk through string and if you hit a . ? !, push everything upto that punctuation mark into an array
+- Keep doing that until you run out of characters
+
+# Exercise 2
+
+Input: string
+Output: true/false
+Rules: 
+- the string can only contain one letter from each block
+- case doesn't matter
+
+Manual Steps:
+- split the string into characters
+- loop through each character
+	- if the character exists in the collection
+		- remove character and it's pair (i.e. the block) from the collection
+	- else if the charater doesn't exist
+		- return false
+- if the entire loop finishes, return true
+
+Try using an array of arrays. Check if array matches. Remove inner array if it does. 
+
+Steps:
+- 
