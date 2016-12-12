@@ -1,5 +1,7 @@
 SUITS = %w(H S D C).freeze
 CARDS = %w(2 3 4 5 6 7 8 9 10 J Q K A).freeze
+DEALER_STAY_TOTAL = 17
+BUST_TOTAL = 21
 
 def prompt(msg)
   puts ""
@@ -20,11 +22,11 @@ def deal_card!(deck, hand)
   hand << deck.delete(deck.sample)
 end
 
-def display_hands(player_hand, dealer_hand, hidden = 0)
+def display_hands(player_hand, dealer_hand, hidden = false)
   dealer_show = []
   dealer_hand.each_index { |element| dealer_show << dealer_hand[element] }
-  dealer_show[0] = ['X', 'X']
-  if hidden == 1
+  dealer_show[0] = ['?', '?']
+  if hidden
     puts ""
     prompt "Dealer's Hand: #{dealer_show} --> #{hand_value(dealer_show)}"
   else
@@ -34,11 +36,7 @@ def display_hands(player_hand, dealer_hand, hidden = 0)
 end
 
 def busted?(player_hand)
-  if hand_value(player_hand) > 21
-    true
-  else
-    false
-  end
+  hand_value(player_hand) > BUST_TOTAL
 end
 
 def sort_hand_for_evaluation(hand)
@@ -59,7 +57,7 @@ def hand_value(hand)
   hand_value = 0
   sorted_hand.each do |card|
     case card[0]
-    when '10', 'J', 'Q', 'K'
+    when 'J', 'Q', 'K'
       hand_value += 10
     when 'A'
       hand_value += ace_value(hand_value)
@@ -71,7 +69,7 @@ def hand_value(hand)
 end
 
 def ace_value(hand_value)
-  hand_value + 11 > 21 ? 1 : 11
+  hand_value + 11 > BUST_TOTAL ? 1 : 11
 end
 
 def someone_won?(player_hand, dealer_hand)
@@ -79,7 +77,7 @@ def someone_won?(player_hand, dealer_hand)
 end
 
 def detect_winner(player_hand, dealer_hand)
-  if hand_value(dealer_hand) > 21
+  if hand_value(dealer_hand) > BUST_TOTAL
     prompt "Dealer busted! You win!"
   elsif hand_value(player_hand) > hand_value(dealer_hand)
     prompt "You win!"
@@ -94,7 +92,7 @@ prompt "Welcome to Twenty-One!"
 
 loop do
   prompt "Hit Enter to deal cards!"
-  gets.chomp
+  gets
 
   deck = initialize_deck
 
@@ -110,8 +108,8 @@ loop do
     display_hands(player_hand, dealer_hand, 1)
     prompt "Your Turn: hit (H) or stay (S)?"
     answer = gets.chomp
-    deal_card!(deck, player_hand) if answer.downcase.start_with?('h')
-    break if answer.downcase.start_with?('s') || busted?(player_hand)
+    deal_card!(deck, player_hand) if answer.downcase == 'h'
+    break if answer.downcase == 's' || busted?(player_hand)
   end
 
   if busted?(player_hand)
@@ -121,17 +119,17 @@ loop do
     prompt "You stayed. It's the dealer's turn."
     loop do
       display_hands(player_hand, dealer_hand)
-      break if hand_value(dealer_hand) >= 17
-      sleep 5
+      break if hand_value(dealer_hand) >= DEALER_STAY_TOTAL
+      sleep 3
       deal_card!(deck, dealer_hand)
       prompt "Dealer hits."
     end
     detect_winner(player_hand, dealer_hand)
   end
 
-  prompt "Do you want to play again?"
+  prompt "Do you want to play again? (Y)"
   play_again = gets.chomp
-  break unless play_again.downcase.start_with?('y')
+  break unless play_again.downcase == 'y'
 end
 
 prompt "Thanks for playing!"
