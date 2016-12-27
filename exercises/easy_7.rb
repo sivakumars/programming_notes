@@ -1,22 +1,22 @@
 ## Question 1
 
-# Input: two non-empty and equally sized arrays
-# Output: one array that contains alternating elements from both arrays
-# Model:
-# - create empty output array, one each loop for each array and add elements by
-# index to the output array
+Input: two non-empty and equally sized arrays
+Output: one array that contains alternating elements from both arrays
+Model:
+- create empty output array, one each loop for each array and add elements by
+index to the output array
 
-# def interleave(array1, array2)
-#   alternator = []
-#   index = 0
-#   while index < array1.size
-#     alternator << array1[index] << array2[index]
-#     index += 1
-#   end
-#   alternator
-# end
-#
-# p interleave([1, 2, 3], ['a', 'b', 'c'])
+def interleave(array1, array2)
+  alternator = []
+  index = 0
+  while index < array1.size
+    alternator << array1[index] << array2[index]
+    index += 1
+  end
+  alternator
+end
+
+p interleave([1, 2, 3], ['a', 'b', 'c'])
 
 ## Question 2
 
