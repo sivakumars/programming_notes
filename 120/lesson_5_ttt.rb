@@ -34,12 +34,11 @@ class Board
     nil
   end
 
-
-
   def reset
     (1..9).each { |key| @squares[key] = Square.new }
   end
 
+  # rubocop:disable Metrics/AbcSize
   def draw
     puts "     |     |"
     puts "  #{@squares[1]}  |  #{@squares[2]}  |  #{@squares[3]}"
@@ -53,6 +52,7 @@ class Board
     puts "  #{@squares[7]}  |  #{@squares[8]}  |  #{@squares[9]}"
     puts "     |     |"
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 
@@ -64,7 +64,7 @@ class Board
 end
 
 class Square
-  INITIAL_MARKER = ' '
+  INITIAL_MARKER = ' '.freeze
 
   attr_accessor :marker
 
@@ -86,30 +86,29 @@ class Square
 end
 
 class Player
-  attr_reader :marker
+  attr_accessor :marker
 
-  def initialize(marker)
+  def initialize(marker=" ")
     @marker = marker
   end
 end
 
 class TTTGame
-  HUMAN_MARKER = "X"
-  COMPUTER_MARKER = "O"
-  FIRST_TO_MOVE = HUMAN_MARKER
+  FIRST_TO_MOVE = "X"
 
   attr_reader :board, :human, :computer
 
   def initialize
     @board = Board.new
-    @human = Player.new(HUMAN_MARKER)
-    @computer = Player.new(COMPUTER_MARKER)
+    @human = Player.new
+    @computer = Player.new
     @current_marker = FIRST_TO_MOVE
   end
 
   def play
     clear
     display_welcome_message
+    pick_marker
 
     loop do
       display_board
@@ -117,7 +116,7 @@ class TTTGame
       loop do
         current_player_moves
         break if board.someone_won? || board.full?
-        clear_screen_and_display_board if human_turn?
+        clear_screen_and_display_board
       end
 
       display_result
@@ -131,6 +130,18 @@ class TTTGame
 
   private
 
+  def pick_marker
+    print "Do you want to be 'X' or 'O'? "
+    answer = nil
+    loop do
+      answer = gets.chomp.upcase
+      break if %('X' 'O').include?(answer)
+      puts "That's not a valid choice."
+    end
+    human.marker = answer
+    human.marker == 'X' ? computer.marker = 'O' : computer.marker = 'X'
+  end
+
   def display_welcome_message
     puts "Welcome to Tic Tac Toe!"
     puts ""
@@ -143,10 +154,6 @@ class TTTGame
   def clear_screen_and_display_board
     clear
     display_board
-  end
-
-  def human_turn?
-    @current_marker == HUMAN_MARKER
   end
 
   def display_board
@@ -173,21 +180,21 @@ class TTTGame
   end
 
   def current_player_moves
-    if human_turn?
+    if @current_marker == human.marker
       human_moves
-      @current_marker = COMPUTER_MARKER
+      @current_marker = computer.marker
     else
       computer_moves
-      @current_marker = HUMAN_MARKER
+      @current_marker = human.marker
     end
   end
 
   def display_result
-    clear
-    display_board
-    if board.winning_marker == HUMAN_MARKER
+    clear_screen_and_display_board
+
+    if board.winning_marker == human.marker
       puts "You won!"
-    elsif board.winning_marker == COMPUTER_MARKER
+    elsif board.winning_marker == computer.marker
       puts "Computer won!"
     else
       puts "It's a tie!"
