@@ -76,7 +76,7 @@ class Hand
   end
 
   def determine_ace_value(value)
-    value + 11 > Participant::BUST_TOTAL ? 1 : 11
+    value + 11 > Player::BUST_TOTAL ? 1 : 11
   end
 end
 
