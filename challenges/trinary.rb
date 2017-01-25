@@ -15,3 +15,5 @@ class Trinary
     result
   end
 end
+
+puts "n"
