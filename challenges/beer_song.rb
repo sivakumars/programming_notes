@@ -1,6 +1,7 @@
+#
 class BeerSong
   def verse(num)
-    result = ""
+    result = ''
     case num
     when (3..99)
       result += "#{num} bottles of beer on the wall, #{num} bottles of beer.\n" \
@@ -19,9 +20,9 @@ class BeerSong
   end
 
   def verses(num1, num2)
-    result = ""
+    result = ''
     (num2..num1).reverse_each.with_index do |num, idx|
-      result += "\n" unless idx == 0
+      result += "\n" unless idx.zero?
       result += verse(num)
     end
     result
