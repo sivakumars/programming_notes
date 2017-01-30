@@ -1,5 +1,3 @@
-require 'pry'
-
 class CircularBuffer
   def initialize(buffer_length)
     @buffer_length = buffer_length
