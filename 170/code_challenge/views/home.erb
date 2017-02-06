@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><%= @title %></title>
+
+</head>
+
+<body>
+  <% @file_listing.each do |file| %>
+    <% filename = file.split('/').last %>
+    <a href='<%= filename %>'><p><%= filename %></p></a>
+  <% end %>
+
+  <% if @reverse_sort %>
+    <a href='/'>Sort ascending</a>
+  <% else %>
+    <a href='?reverse_sort=true'>Sort descending</a>
+  <% end %>
+</body>
+
+</html>
