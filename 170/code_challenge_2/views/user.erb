@@ -1,0 +1,11 @@
+<h3>Details for <%= @username %>:</h3>
+
+<p>Email: <%= @email%></p>
+<p>Interests: <%= @interests %></p>
+
+<h4>Other Users:</h4>
+<ul>
+  <% @users.reject { |name, _| name == @username }.each do |username, _| %>
+  <li><a href='/users/<%= username %>'><%= username %></a></li>
+  <% end %>
+</ul>
