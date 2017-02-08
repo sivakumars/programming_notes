@@ -1,7 +1,6 @@
 require "sinatra"
-require "sinatra/reloader"
-require "tilt/erubis"
-require 'pry'
+require "sinatra/reloader" if development?
+require "tilt/erubis" 
 
 helpers do
   def in_paragraphs(text)
@@ -11,7 +10,7 @@ helpers do
   end
 
   def highlight(text, term)
-    text.gsub(query, "<strong>#{query}</strong>")
+    text.gsub(term, "<strong>#{term}</strong>")
   end
 end
 
