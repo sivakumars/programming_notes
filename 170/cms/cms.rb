@@ -2,6 +2,7 @@ require "sinatra"
 require "sinatra/reloader"
 require "tilt/erubis"
 require "redcarpet"
+require "yaml"
 
 configure do
   enable :sessions
@@ -32,8 +33,24 @@ def load_file_content(path)
   end
 end
 
-def valid_user?(username, password)
-  username == "admin" && password == "secret"
+def load_user_credentials
+  credentials_path = if ENV["RACK_ENV"] == "test"
+    File.expand_path("../test/users.yml", __FILE__)
+  else
+    File.expand_path("../users.yml", __FILE__)
+    end
+  YAML.load_file(credentials_path)
+end
+
+def user_signed_in?
+  session.key?(:username)
+end
+
+def require_signed_in_user
+  unless user_signed_in?
+    session[:message] = "You must be signed in to do that."
+    redirect "/"
+  end
 end
 
 get "/" do
@@ -49,10 +66,11 @@ get "/users/signin" do
 end
 
 post "/users/signin" do
+  credentials = load_user_credentials
   username = params[:username]
   password = params[:password]
 
-  if valid_user?(username, password)
+  if credentials.key?(username) && credentials[username] == password
     session[:username] = username
     session[:message] = "Welcome!"
     redirect "/"
@@ -70,10 +88,14 @@ post "/users/signout" do
 end
 
 get "/new" do
+  require_signed_in_user
+
   erb :new
 end
 
 post "/create" do
+  require_signed_in_user
+
   filename = params[:filename]
 
   if filename.size == 0
@@ -90,6 +112,8 @@ post "/create" do
 end
 
 post "/:filename/delete" do
+  require_signed_in_user
+
   file_path = File.join(data_path, params[:filename])
 
   File.delete(file_path)
@@ -101,15 +125,17 @@ end
 get "/:filename" do
   file_path = File.join(data_path, params[:filename])
 
-  unless File.file?(file_path)
+  if File.file?(file_path)
+    load_file_content(file_path)
+  else
     session[:message] = "#{params[:filename]} does not exist."
     redirect "/"
   end
-
-  load_file_content(file_path)
 end
 
 get "/:filename/edit" do
+  require_signed_in_user
+
   file_path = File.join(data_path, params[:filename])
 
   @filename = params[:filename]
@@ -119,6 +145,8 @@ get "/:filename/edit" do
 end
 
 post "/:filename" do
+  require_signed_in_user
+
   file_path = File.join(data_path, params[:filename])
 
   File.write(file_path, params[:content])
