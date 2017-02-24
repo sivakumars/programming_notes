@@ -12,7 +12,6 @@ helpers do
   end
 end
 
-
 get '/' do
   if session[:message]
     session.delete(:message)
