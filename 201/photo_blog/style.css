@@ -17,7 +17,7 @@
     overflow: hidden;
   }
 
-  .logo-text {
+  .logo h1 {
     display: inline-block;
     font-size: 36px;
     font-weight: normal;
@@ -27,7 +27,7 @@
     line-height: 100px;
   }
 
-  .logo-icon {
+  .logo img {
     margin-left: 20px;
     float: left;
   }
