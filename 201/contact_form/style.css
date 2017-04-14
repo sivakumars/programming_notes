@@ -1,0 +1,48 @@
+@import url("whitespace-reset.css");
+
+body {
+  padding: 15px 10px;
+  font: normal 16px Helvetica, Arial, sans-serif;
+}
+
+fieldset {
+  margin: 0 auto;
+  width: 600px;
+}
+
+dd {
+  margin-bottom: 25px;
+}
+
+dt {
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+  height: 30px;
+  padding: 3px 10px;
+  width: 100%;
+  font: normal 14px Helvetica, Arial, sans-serif;
+}
+
+ul {
+  font-size: 14px;
+  margin: 20px 0;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 0 3px 3px 0;
+}
+
+textarea {
+  height: auto;
+  resize: vertical;
+}
+
+dd.comments {
+  margin-bottom: 0;
+}
