@@ -1,0 +1,245 @@
+@import url("whitespace-reset.css");
+
+body {
+  font: normal 20px "Avenir", Arial, sans-serif;
+  color: #45494d;
+  text-align: center;
+  padding: 75px 0 0 0;
+  background: #2f2840 url("images/bg_body.gif") 50% 0 repeat;
+}
+
+a {
+  text-decoration: none;
+  color: #3e59b2;
+}
+
+header h1 a {
+  display: inline-block;
+  width: 298px;
+  height: 243px;
+  text-indent: -9999px;
+  background: transparent url("images/logo.png") 0 0 no-repeat;
+}
+
+nav a {
+  color: #cacaca;
+}
+
+nav {
+  text-transform: uppercase;
+  font-size: 24px;
+  margin-top: 100px;
+  margin-bottom: 60px;
+}
+
+.active-page {
+  color: #6db9ff;
+  font-weight: bold;
+}
+
+nav li {
+  display: inline;
+  margin: 0 45px;
+}
+
+main {
+  background: #fff;
+  padding-top: 100px;
+}
+
+.column {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+article {
+  padding: 0 110px 100px 110px;
+}
+
+h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+h3 {
+  color: #3e59b2;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+footer {
+  background: #e7e7e7;
+  padding: 75px 0;
+  color: #b2b2b2;
+}
+
+footer p {
+  padding: 0 0 40px 0;
+}
+
+footer a {
+  background: url("images/icons_social-media.png") 0 0 no-repeat;
+  display: block;
+  height: 46px;
+  width: 46px;
+}
+
+footer li {
+  display: inline-block;
+  margin: 0 70px;
+}
+
+.facebook {
+  background-position: 0 -46px;
+}
+
+.email {
+  background-position: 0 -92px;
+}
+
+.instagram {
+    background-position: 0 -138px;
+}
+
+#team li {
+  display: inline-block;
+  margin: 0 27px;
+}
+
+#team h3 {
+  font-weight: normal;
+}
+
+#team p {
+  padding: 0 0 100px 0;
+}
+
+#team {
+  padding-bottom: 225px;
+}
+
+#projects article {
+  padding: 0 0 50px 0;
+}
+
+#projects article p {
+  padding: 0 110px;
+}
+
+#projects figure {
+  padding: 0 30px 20px 30px;
+}
+
+#projects img {
+  width: 100%;
+  display: block;
+}
+
+@media (max-width: 1010px) {
+  #team li {
+    width: 50%;
+    margin: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    margin: 20px 0;
+  }
+
+  header h1 a {
+    width: 223px;
+    height: 182px;
+    background-size: cover;
+  }
+
+  main {
+    padding-top: 70px;
+  }
+
+  article p {
+    text-align: justify;
+  }
+
+  article {
+    padding: 0 40px 100px 40px;
+  }
+
+  footer {
+    padding: 50px 0;
+  }
+
+  footer li {
+    margin: 0 30px;
+  }
+
+  #team {
+    padding-bottom: 100px;
+  }
+
+  #projects article p {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 0;
+    font-size: 16px;
+  }
+
+  header {
+    padding: 10px 20px;
+  }
+
+  header h1 {
+    float: left;
+    margin: 20px 0;
+  }
+
+  header h1 a {
+    width: auto;
+    height: 55px;
+    padding: 15px 0 0 55px;
+    text-indent: 0;
+    color: #fff;
+    font-size: 22px;
+    background-size: 90px;
+    background-position: -20px 5px;
+  }
+
+  nav {
+    font-size: 16px;
+    margin: 0;
+    text-align: right;
+  }
+
+  nav li {
+    display: block;
+    margin: 10px 0;
+  }
+
+  header:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+
+  article {
+    padding: 0 40px 60px 40px;
+  }
+
+  footer {
+    padding: 30px 0 10px 0;
+  }
+
+  footer li {
+    margin: 0 20px;
+  }
+}
