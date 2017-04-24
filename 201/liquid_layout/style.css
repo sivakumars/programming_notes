@@ -1,0 +1,35 @@
+@import url("whitespace-reset.css");
+
+body {
+  text-align: justify;
+}
+
+#content, #sidebar {
+  padding: 20px 30px;
+}
+
+#content {
+  width: 70%;
+  float: left;
+}
+
+#sidebar {
+  overflow: hidden;
+}
+
+main:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+@media (max-width: 600px) {
+  #sidebar, #content {
+    width: 90%
+  }
+}
+
+main {
+  min-width: 600px;
+  max-width: 1000px;
+}
