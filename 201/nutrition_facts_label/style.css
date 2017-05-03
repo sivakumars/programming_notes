@@ -1,57 +1,51 @@
 @import url("whitespace-reset.css");
 
-body {
+html {
   font: 28px Helvetica, Arial, sans-serif;
+}
+
+body {
   background: #fff;
-  color: #000;
   margin: 8px;
-  border: 2px #000 solid;
-  padding: 10px 15px;
+}
+
+main {
+  border: 2px solid #000;
   width: 680px;
+  padding: 10px 15px 15px 15px;
 }
 
 h1 {
-  font-size: 56px;
+  font-size: 2rem;
 }
 
 h2 {
-  margin-top: 5px;
-  border-top: 30px #000 solid;
   padding: 10px 0;
-  border-bottom: 1px #000 solid;
-  margin-bottom: 5px;
-}
-
-dl:first-of-type dt {
-  font-weight: bold;
+  margin-top: 5px;
+  border-top: 30px solid #000;
+  border-bottom: 1px solid #000;
 }
 
 dl, dt, dd {
   display: inline-block;
 }
 
-header dl:first-of-type {
-  float: left;
+header dl {
+  width: 50%;
+  padding: 5px 0;
 }
 
-header dl:last-of-type {
-  float: right;
+header dl:first-of-type dt {
+  font-weight: bold;
 }
 
-header:after {
-  content: "";
-  display: block;
-  clear: both;
+header dl + dl {
+  text-align: right;
 }
 
 header {
-  padding-bottom: 5px;
-  border-bottom: 15px #000 solid;
-}
-
-table:first-of-type thead th {
-  padding-top: 11px;
-  text-align: right;
+  margin-bottom: 10px;
+  border-bottom: 15px solid #000;
 }
 
 table {
@@ -59,43 +53,60 @@ table {
   width: 100%;
 }
 
-table:first-of-type tr {
-  border-bottom: 1px #000 solid;
+thead th {
+  text-align: right;
 }
 
-th {
+tbody th {
+  padding: 2px 0;
+  border-top: 1px #000 solid;
   text-align: left;
+}
+
+tbody td {
+  padding: 2px 0;
+  border-top: 1px #000 solid;
+}
+
+td.indent {
+  width: 1rem;
+  border-top: none;
 }
 
 th dd {
   font-weight: normal;
 }
 
-.indent {
-  text-indent: 40px;
-}
-
-table:first-of-type tbody:first-of-type td:last-of-type {
+table:first-of-type tr td:last-of-type {
+  text-align: right;
   font-weight: bold;
 }
 
-table:first-of-type tbody td:last-of-type {
-  text-align: right;
+table:first-of-type tbody + tbody tr td:last-of-type {
+  font-weight: normal;
 }
 
 table:first-of-type tbody:first-of-type {
   border-bottom: 20px #000 solid;
 }
 
-tfoot td {
+table:first-of-type tfoot td:last-of-type {
   text-align: left;
-  font-size: 25px;
-  padding: 15px;
-  text-indent: -15px;
+  font-size: .9rem;
+  font-weight: normal;
+  padding: .5rem 0 .5rem .7rem;
+  text-indent: -.7rem;
+  border-top: 1px solid #000;
 }
 
 table + table {
-  font-size: 22.4px;
+  font-size: .8rem;
+}
+
+table + table thead th {
+  text-align: left;
+  font-weight: normal;
+  border-bottom: 1px #000 solid;
 }
 
 table + table th {
@@ -106,7 +117,11 @@ table + table th:first-of-type {
   width: 37%;
 }
 
-table + table th {
-  font-weight: normal;
-  border-bottom: 1px #000 solid;
+table + table td {
+  text-align: left;
+  border-top: none;
+}
+
+table + table td.indent {
+  text-indent: 1.2rem;
 }
