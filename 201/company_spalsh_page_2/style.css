@@ -1,0 +1,66 @@
+@import url("whitespace-reset.css");
+
+body {
+  background: #2f2840 url("images/bg_body.png");
+  color: #45494d;
+  font: normal 20px Avenir, Arial, sans-serif;
+  line-height: 28px;
+  padding-bottom: 60px;
+  text-align: center;
+}
+
+header, main, footer {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+header {
+  padding: 160px 0 90px 0;
+}
+
+main {
+  background: #fff;
+  padding-bottom: 10px;
+}
+
+main h1 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+main h2 {
+  color: #3e98b2;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+main article {
+  margin: 0 auto;
+  max-width: 810px;
+  padding: 110px 15px 60px 15px;
+}
+
+footer {
+  background: #e7e7e7;
+  padding: 30px 0;
+}
+
+footer li {
+  display: inline-block;
+  height: 50px;
+  margin: 0 63px;
+  text-indent: -9999px;
+  width: 50px;
+}
+
+footer li:first-of-type {
+  background: url("images/social_icons.jpg") no-repeat;
+}
+
+footer li:nth-of-type(2) {
+  background: url("images/social_icons.jpg") no-repeat -177px 0;
+}
+
+footer li:last-of-type {
+  background: url("images/social_icons.jpg") no-repeat -352px;
+}
