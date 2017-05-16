@@ -4,7 +4,7 @@ body {
   background: #2f2840 url("images/bg_body.png");
   color: #45494d;
   font: normal 20px Avenir, Arial, sans-serif;
-  line-height: 28px;
+  line-height: 1.4;
   padding-bottom: 60px;
   text-align: center;
 }
