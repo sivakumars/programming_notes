@@ -1,0 +1,119 @@
+@import url("whitespace-reset.css");
+
+body {
+  background: #fff;
+  color: #282828;
+  font: normal 16px Helvetica, Arial, sans-serif;
+  margin: 0 auto;
+  padding: 15px 10px;
+  width: 600px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: normal;
+  margin-bottom: 30px;
+}
+
+fieldset {
+  background: #ececec;
+  border-left: 5px solid #ccc;
+  margin-bottom: 2px;
+  padding: 27px 48px 33px 35px;
+}
+
+fieldset h2 {
+  font-size: 20px;
+}
+
+input {
+  width: 100%;
+}
+
+dt {
+  color: #666;
+  font-weight: bold;
+  margin-bottom: 15px;
+  margin-top: 25px;
+}
+
+input[type="text"], input[type="email"], input[type="password"], textarea {
+  border: 1px solid #2e67b2;
+  border-radius: 4px;
+  color: black;
+  display: inline-block;
+  font-size: 13px;
+  height: 40px;
+  padding: 3px 10px;
+}
+
+#personal input[type="text"] {
+  width: 49%;
+}
+
+#personal input[type="text"]:first-of-type {
+  margin-right: 2%;
+}
+
+input[type="email"] {
+  width: 100%
+}
+
+#social div {
+  display: inline-block;
+  width: 32%;
+}
+
+#social div:nth-of-type(-n+2) {
+  margin-right: 2%;
+}
+
+#account div {
+  display: inline-block;
+  width: 49%;
+}
+
+#account div:first-of-type {
+  margin-right: 2%;
+}
+
+#bio label {
+  color: #282828;
+  font-size: 20px;
+}
+
+textarea {
+  height: 110px;
+  resize: vertical;
+  width: 100%;
+}
+
+#bio dt {
+  margin-top: 0;
+}
+
+input[type="checkbox"] {
+  width: 5%;
+}
+
+span {
+  color: #666;
+  font-size: 14px;
+  float: right;
+  width: 95%;
+}
+
+input[type="submit"] {
+  background: #06c;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  height: 45px;
+  margin-top: 25px;
+  width: 175px;
+}
+
+input[type="submit"]:hover, input[type="submit"]:focus {
+  background: #6095cb;
+}
