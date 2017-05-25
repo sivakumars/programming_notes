@@ -1,0 +1,292 @@
+@import url("whitespace-reset.css");
+
+/* TABLE OF CONTENTS */
+  /* Base Styles */
+  /* Masthead */
+  /* Main Content */
+  /* Sidebar */
+  /* Footer */
+
+/* Base Styles */
+
+body {
+  background: #fff;
+  color: #45494d;
+  font: normal 16px Helvetica, Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  text-align: justify;
+}
+
+h1 {
+  font-size: 68px;
+  letter-spacing: 0.3em;
+  margin-bottom: 38px;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 35px;
+}
+
+/* Masthead */
+
+body > header {
+  background: #3d3d3d;
+  color: #fff;
+  padding: 134px 0 51px 0;
+  text-align: center;
+}
+
+nav {
+  margin-top: 132px;
+}
+
+nav a {
+  color: #fff;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.active {
+  color: #50c3af;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 60px;
+}
+
+/* Main Content */
+
+#content {
+  float: left;
+  width: 65%;
+  max-width: 655px;
+  margin-right: 10%;
+  padding-bottom: 70px;
+}
+
+main {
+  padding: 85px 0 0 50px;
+}
+
+main:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+h3 a {
+  color: #50c3af;
+}
+
+h2 a {
+  color: #45494d;
+}
+
+h2 a:hover {
+  color: #50c3af;
+}
+
+article p {
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+article {
+  margin-bottom: 75px;
+}
+
+.button {
+  background: #d2d5da;
+  border-radius: 50px;
+  color: #fff;
+  display: inline-block;
+  margin-right: 25px;
+  padding: 10px 30px;
+}
+
+.next {
+  background: #50c3af;
+}
+
+/* Sidebar */
+
+aside {
+  background: #f6f7f8;
+  float: left;
+  font-size: 14px;
+  padding: 40px 30px 40px 40px;
+  width: 24%;
+  max-width: 232px;
+}
+
+aside h2 {
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+aside p {
+  color: #787b80;
+  hyphens: auto;
+  line-height: 24px;
+  text-align: justify;
+}
+
+aside li {
+  background: url("list-icon.jpg") 0 50% no-repeat;
+  color: #787b80;
+  margin-bottom: 10px;
+  padding-left: 24px;
+}
+
+aside ul {
+  margin-bottom: 110px;
+}
+
+/* Footer */
+
+footer {
+  border-top: 1px solid #7e8287;
+  color: #7e8287;
+  font-size: 12px;
+  margin: 0 50px;
+  padding: 20px 0;
+}
+
+/* Comments */
+
+#comments img {
+  border-radius: 100%;
+  margin-right: 10px;
+}
+
+#comments h3 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#background-image h3 {
+  background: url("chris.jpg") no-repeat;
+  height: 50px;
+  line-height: 50px;
+  padding-left: 60px;
+}
+
+#comments article {
+  margin-bottom: 40px;
+}
+
+label {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+input[type="text"], input[type="email"], textarea {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #9a9a9a;
+  font-size: 15px;
+  margin: 5px 0 20px 0;
+  padding: 10px;
+  width: 100%;
+}
+
+input {
+  height: 40px;
+}
+
+textarea {
+  height: 140px;
+  resize: none;
+}
+
+input[type="submit"] {
+  background: #50c3af;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #fff;
+  height: 30px;
+  padding: 0;
+  width: 85px;
+}
+
+@media (max-width: 768px) {
+  body > header {
+    padding: 40px 0 20px 0;
+  }
+
+  h1 {
+    font-size: 50px;
+  }
+
+  li {
+    margin-right: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  h2 {
+    font-size: 24px;
+  }
+  main {
+    padding: 50px 0 0 0;
+  }
+  #content {
+    float: none;
+    padding: 20px;
+    width: 100%;
+  }
+  aside {
+    float: none;
+    max-width: 100%;
+    width: 100%;
+  }
+  aside section {
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  body > header img {
+    width: 90%;
+  }
+  aside {
+    background: transparent;
+  }
+  aside ul {
+    margin: 0;
+  }
+  aside section {
+    background: #f6f7f8;
+    display: block;
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 100%;
+  }
+  nav {
+    margin-top: 50px;
+  }
+  nav li {
+    display: inline-block;
+    margin: 10px 0 0 0;
+    width: 49%;
+  }
+}
