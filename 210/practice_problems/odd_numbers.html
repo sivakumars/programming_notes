@@ -1,0 +1,23 @@
+<body>
+  <script>
+    function logOddNumbers(limit) {
+      for (var i = 0; i <= limit; i++) {
+        if (i % 2 !== 0) {
+          console.log(i);
+        }
+      }
+    }
+    logOddNumbers(19);
+   </script>
+</body>
+
+<!-- Input: positive integer
+Output: print odd numbers from 1 to input
+Rules:
+  - print on separate lines
+  - input will always be positive
+  - inclusive of the passed-in number
+Steps:
+  - Loop from 1 to input
+    - if number is odd, log it
+    - else, skip to next iteration -->
