@@ -1,0 +1,23 @@
+<body>
+  <script>
+    function logMultiples(number) {
+      for (var i = 100; i > 0; i--) {
+        if (i % number === 0 && i % 2 !== 0) {
+          console.log(i);
+        }
+      }
+    }
+    logMultiples(17);
+    logMultiples(21);
+   </script>
+</body>
+
+Input: number
+Output: Print all ODD multiples of input between 0 and 100 (inclusive)
+Rules:
+  - Output must be multiple of input
+  - Output must be odd
+  - Print output in descending order (loop also this way)
+Steps:
+  - Loop from 100 to 0
+  - if the looped number modulo the input is zero and odd, print it

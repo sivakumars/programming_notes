@@ -1,5 +1,23 @@
 <body>
   <script>
-
+    function multiplesOfThreeAndFive () {
+      for (var i = 1; i <= 100; i++) {
+        if (i % 15 === 0) {
+          console.log(i + '!');
+        } else if (i % 5 === 0 || i % 3 === 0) {
+            console.log(i)
+        }
+      }
+    }
+    multiplesOfThreeAndFive();
    </script>
 </body>
+
+<!-- Input: none
+Output: print numbers between 1 and 100 that are multiples of 3 and 5
+Rules:
+  - if the number is divisible by 15 (3 and 5), append "!"
+Steps:
+  - Loop from 1 to 100 (inclusive)
+  - If number is divisible by 15, print number with !
+  - If number is divisible by 3 or 5, print number -->
