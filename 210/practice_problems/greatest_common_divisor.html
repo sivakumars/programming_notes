@@ -1,0 +1,28 @@
+<body>
+  <script>
+    function gcd(num1, num2) {
+      for(var i = num1; num1 > 0; i--) {
+        if (num1 % i === 0) {
+          if (num2 % i === 0 ) {
+            return i;
+          }
+        }
+      }
+    }
+
+    console.log(gcd(12, 4));   // 4
+    console.log(gcd(15, 10));  // 5
+    console.log(gcd(9, 2));    // 1
+   </script>
+</body>
+
+Input: two numbers
+Output: one number that is greatest common divisor
+Rules:
+
+Steps:
+- Loop from num1 to 0
+  - if a value is a divisor
+    - try dividing it into num2
+    - if it's a divisor, return it
+    - else, continue to next iteration
