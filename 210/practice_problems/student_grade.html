@@ -1,0 +1,36 @@
+<body>
+  <script>
+    var userGuess;
+    var guesses = 0;
+    var password = 'password';
+
+    while (guesses < 3) {
+      userGuess = prompt('What is the password:');
+
+      if (userGuess === password) {
+        console.log('You have successfully logged in.')
+        break;
+      }
+
+      guesses++;
+    }
+
+    if (guesses === 3) {
+      console.log('You have been denied access.')
+    }
+
+   </script>
+</body>
+
+Input: user enters password 3 times
+Output: message after each password attempt
+Rules:
+- if user is wrong 3 times, end program and write denied message
+Steps:
+- Set gusses to 0
+- Loop while guesses is less than 3
+  - Ask user to enter password
+  - check if password is correct
+  - if correct, display correct message
+  - if wrong, increment guesses by 1, and ask again
+- if guesses >= 3, deny

@@ -1,0 +1,28 @@
+<body>
+  <script>
+    function isXor(val1, val2) {
+      var answer = !!(!val1 && val2 || val1 && !val2);
+      console.log(answer);
+    }
+
+    isXor(false, true);     // true
+    isXor(true, false);     // true
+    isXor(false, false);    // false
+    isXor(true, true);      // false
+
+
+    isXor(false, 3);        // true
+    isXor('a', undefined);  // true
+    isXor(null, '');        // false
+    isXor('2', 23);         // false
+   </script>
+</body>
+
+Input: two values
+Output: boolean
+Rules:
+  - exclusive OR
+Steps:
+  - Create answer variable and set to false
+  - If val1 is true, flip it
+  - If val2 is true, flip it

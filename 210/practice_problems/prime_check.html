@@ -1,0 +1,35 @@
+<body>
+  <script>
+    function isPrime(number) {
+      if (number <= 1 || (number > 2 && number % 2 === 0)) {
+        return false;
+      }
+
+      for (var i = 3; i < number/2; i += 2) {
+        if (number % i === 0) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    console.log(isPrime(1));
+    console.log(isPrime(2));
+    console.log(isPrime(3));
+    console.log(isPrime(43));
+    console.log(isPrime(55));
+    console.log(isPrime(0));
+   </script>
+</body>
+
+Input: number
+Output: boolean
+Rules:
+- return boolean if input is prime
+- input is non-negative
+- a number is prime if it is only divisible by 1 and itself
+Steps:
+- loop from 1 to the number/2
+  - if number % i is ever equal to zero, break and set to false
+  - if the loop finishes, set to true
