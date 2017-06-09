@@ -1,0 +1,75 @@
+<body>
+  <script>
+    function indexOf(firstString, secondString) {
+      var firstLength = firstString.length;
+      var secondLength = secondString.length;
+      var index;
+      var matchedIndex = -1;
+
+      for (var i = 0; i <= firstLength - secondLength; i++) {
+        index = 0;
+        
+        while (index < secondLength) {
+          if (firstString[i + index] === secondString[index]) {
+            index++;
+            if (index === secondLength) {
+              matchedIndex = i;
+              console.log(i);
+              return;
+            }
+          } else {
+            break;
+          }
+        }
+      }
+      console.log(matchedIndex);
+    }
+
+    function lastIndexOf(firstString, secondString) {
+      var firstLength = firstString.length;
+      var secondLength = secondString.length;
+      var index;
+      var matchedIndex = -1;
+
+      for (var i = firstLength - secondLength; i >= 0; i--) {
+        index = 0;
+        while (index < secondLength) {
+          if (firstString[i + index] === secondString[index]) {
+            index++;
+            if (index === secondLength) {
+              matchedIndex = i;
+              console.log(i);
+              return;
+            }
+          } else {
+            break;
+          }
+        }
+      }
+      console.log(matchedIndex);
+    }
+
+
+
+    indexOf('Some strings', 's');      // 5
+    indexOf('Blue Whale', 'Whale');    // 5
+    indexOf('Blue Whale', 'Blute');    // -1
+    indexOf('Blue Whale', 'leB');      // -1
+
+    lastIndexOf('Some strings', 's');                  // 11
+    lastIndexOf('Blue Whale, Killer Whale', 'Whale');  // 19
+    lastIndexOf('Blue Whale, Killer Whale', 'all');    // -1
+   </script>
+</body>
+
+Input: two strings
+Output: index of first occurence of 2nd string in the 1st string
+Rules:
+- if no match, return -1
+Steps:
+- Starting from 0th character of first string
+  - Loop from 0 to length of 2nd string
+    - Check if each char matches the other
+    - If no match, break;
+    - If you get to the end, return the character of first string that you're iterating on
+  - If no match, continue to next iteration (i.e 1st char of 1st string)
