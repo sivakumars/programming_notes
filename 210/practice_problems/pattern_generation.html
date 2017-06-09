@@ -1,0 +1,28 @@
+<body>
+  <script>
+    function generatePattern(n) {
+      var row;
+
+      for (var i = 1; i <= n; i++) {
+        row = '';
+        for (var j = 1; j <= i; j++) {
+          row += String(j);
+        }
+        
+        row += Array(n-i+1).join('*');
+        console.log(row);
+      }
+    }
+
+    generatePattern(7);
+   </script>
+</body>
+
+Input: number of rows (n)
+Output: n rows of asterisks/numbers
+Rules:
+- n rows
+- each row has n characters
+Steps:
+- For each number from 1 to n
+  - print from 1 to i + (n-i) asterisks
