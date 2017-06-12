@@ -1,0 +1,46 @@
+<body>
+  <script>
+    function lastInArray(arr) {
+      return arr[arr.length - 1];
+    }
+
+    function rollCall(arr) {
+      for (var i = 0; i < arr.length; i++) {
+        console.log(arr[i]);
+      }
+    }
+
+    function reversedArray(arr) {
+      var reversed = [];
+
+      for (var i = arr.length - 1; i >= 0; i--) {
+        reversed.push(arr[i]);
+      }
+      return reversed;
+    }
+
+    function indexOf(value, array) {
+      var matched = -1;
+
+      for (var i = 0; i < array.length; i++) {
+        if (array[i] === value) {
+          matched = value;
+          break;
+        }
+      }
+
+      return matched;
+    }
+
+    function toString(array) {
+      var strung = '';
+
+      for (var i = 0; i < array.length; i++) {
+        strung += array[i].toString;
+      }
+
+      return strung;
+    }
+
+  </script>
+</body>

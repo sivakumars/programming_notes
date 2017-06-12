@@ -1,0 +1,60 @@
+<body>
+  <script>
+    function push(arr, val) {
+      arr[arr.length] = val;
+      return arr.length;
+    }
+
+    function pop(arr) {
+      var value = arr[arr.length - 1];
+      arr.length = arr.length - 1;
+      return value;
+    }
+
+    function unshift(arr, val) {
+      for (var i = arr.length; i > 0; i--) {
+        arr[i] = arr[i - 1];
+      }
+
+      arr[0] = val;
+      return arr.length;
+    }
+
+    function shift (arr) {
+      var value = arr[0];
+
+      for (var i = 0; i < arr.length - 1; i++) {
+        arr[i] = arr[i + 1];
+      }
+
+      arr.length = arr.length - 1;
+      return value;
+    }
+
+    function indexOf (array, value) {
+      for (var i = 0; i < array.length; i++) {
+        if (array[i] === value) {
+          return i;
+        }
+      }
+
+      return -1;
+    }
+
+    function lastIndexOf(array, value) {
+      var matched = -1;
+
+      for (var i = 0; i < array.length; i++) {
+        if (array[i] === value) {
+          matched = i;
+        }
+      }
+
+      return matched;
+    }
+
+    function slice(array, start, end) {
+      
+    }
+  </script>
+</body>
