@@ -1,0 +1,37 @@
+<body>
+  <script>
+    function rot13(text) {
+      var OFFSET = 13;
+      var charCode;
+      var rotted_text = '';
+
+      for (var i = 0; i < text.length; i++) {
+        charCode = text.charCodeAt(i);
+
+        if ((text[i] >= 'A' && text[i] <= 'M') || (text[i] >= 'a' && text[i] <= 'm')) {
+          charCode += OFFSET;
+        } else if ((text[i] >= 'N' && text[i] <= 'Z') || (text[i] >= 'n' && text[i] <= 'z')) {
+          charCode -= OFFSET;
+        }
+
+        rotted_text += String.fromCharCode(charCode);
+      }
+
+      return rotted_text;
+    }
+
+    console.log(rot13('Teachers open the door, but you must enter by yourself.'));
+    console.log(rot13(rot13('Teachers open the door, but you must enter by yourself.')));
+  </script>
+</body>
+
+Input: text
+Output: string (rotated by 13 places)
+Rules:
+- Don't modify characters that aren't letters
+- Preserve case
+Steps:
+- Loop through each character in string
+  - If it's charCode is between 65 and 77 or 97 and 109, add 13
+  - If between 78 and 90 or 110 and 122, subtract 13
+  - Else, leave it alone

@@ -1,0 +1,64 @@
+<body>
+  <script>
+    function substring(string, start, end) {
+      var start_index;
+      var end_index;
+      var subStr = '';
+
+      if (end === undefined) {
+        end = string.length;
+      }
+
+      if (isNaN(end) || end < 0) {
+        end = 0;
+      }
+
+      if (isNaN(start) || start < 0) {
+        start = 0;
+      }
+
+      if (end > string.length) {
+        end = string.length;
+      }
+
+      if (start > string.length) {
+        start = string.length
+      }
+
+      if (start > end) {
+        start_index = end;
+        end_index = start;
+      } else {
+        start_index = start;
+        end_index = end;
+      }
+
+      for (var i = start_index; i < end_index; i++) {
+        subStr += string[i];
+      }
+
+      return subStr;
+    }
+
+    var string = 'hello world';
+
+    console.log(substring(string, 2, 4));    // "ll"
+    console.log(substring(string, 4, 2));    // "ll"
+    console.log(substring(string, 0, -1));   // ""
+    console.log(substring(string, 2));       // "llo world"
+    console.log(substring(string, 'a'));     // "hello world"
+    console.log(substring(string, 8, 20));   // "rld"
+  </script>
+</body>
+
+Input: string, start_index, end_index
+Output: substring
+Rules:
+- use smaller index as start_index
+- if indices are equal, return empty string
+- if end_index is omitted, return to the end of the string
+- if start_index is < 0 or NaN, treat it as 0
+- if start_index or end_index is greater than string length, treat it as equal to the string length
+Steps:
+- Loop from start to end
+  - Append to new ouput string
