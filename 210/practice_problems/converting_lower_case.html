@@ -1,0 +1,34 @@
+<body>
+  <script>
+    function toLowerCase(string) {
+      var output_string = '';
+      var charCode;
+
+      for (var i = 0; i < string.length; i++) {
+        charCode = string.charCodeAt(i);
+        if (charCode >= 65 && charCode <= 90) {
+          output_string += String.fromCharCode(charCode + 32);
+        } else {
+          output_string += string[i];
+        }
+      }
+
+      return output_string;
+    }
+
+    console.log(toLowerCase('ALPHABET'));      // "alphabet"
+    console.log(toLowerCase('123'));           // "123"
+    console.log(toLowerCase('abcDEF'));        // "abcdef"
+  </script>
+</body>
+
+Input: string
+Output: string in lowercase letters
+Rules:
+Steps:
+- Declare new empty string
+- Loop through each character
+  - Convert to ascii
+  - Add 32
+  - Convert back to a character
+  - Append to new string

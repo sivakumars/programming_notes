@@ -1,0 +1,31 @@
+<body>
+  <script>
+    function startsWith(string, searchString) {
+      var subString = '';
+
+      for (var i = 0; i < searchString.length; i++) {
+        subString += string[i];
+      }
+
+      return (subString === searchString);
+    }
+
+    var str = 'We put comprehension and mastery above all else';
+    console.log(startsWith(str, 'We'));       // true
+    console.log(startsWith(str, 'We put'));   // true
+    console.log(startsWith(str, ''));         // true
+    console.log(startsWith(str, 'put'));      // false
+
+    var longerString = 'We put comprehension and mastery above all else!';
+    console.log(startsWith(str, longerString));      // false
+   </script>
+</body>
+
+Input: input_string and search_string
+Output: boolean
+Rules:
+- return true if input_string begins with search_string
+- false otherwise
+Steps:
+- Loop through input_string to create new string that's same length as search searchString
+- Compare that new string to search string

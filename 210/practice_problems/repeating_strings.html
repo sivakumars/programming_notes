@@ -1,0 +1,36 @@
+<body>
+  <script>
+    function repeat(string, times) {
+      var output_string = '';
+
+      if (typeof times !== 'number' || times < 0) {
+        return undefined;
+      }
+
+      while (times > 0) {
+        output_string += string
+        times--;
+      }
+
+      return output_string;
+    }
+
+    console.log(repeat('abc', 1));    // "abc"
+    console.log(repeat('abc', 2));    // "abcabc"
+    console.log(repeat('abc', -1));   // undefined
+    console.log(repeat('abc', 0));    // ""
+    console.log(repeat('abc', 'a'));  // undefined
+   </script>
+</body>
+
+Input:
+- string
+- number
+Output: string repeated
+Rules:
+- If 2nd arg is not a number, return undefined
+- If 2nd arg is negative, return undefined
+- If 2nd arg is 0, return empty string
+Steps:
+- Check 2nd arg, return undefined and 0 as necessary
+- Use while loop to concatenate to output_string

@@ -1,0 +1,69 @@
+<body>
+  <script>
+    function splitString(str, delimiter) {
+      if (typeof delimiter === 'undefined') {
+        console.log('ERROR: No delimiter');
+        return;
+      } else if (delimiter === '') {
+        for (var i = 0; i < str.length; i++) {
+          console.log(str[i]);
+        }
+        return;
+      }
+
+      var output_str = '';
+      for (var i = 0; i < str.length; i++) {
+        if (str[i] !== delimiter) {
+          output_str += str[i];
+        } else {
+          console.log(output_str);
+          output_str = '';
+        }
+      }
+
+      if (output_str) {
+        console.log(output_str);
+      }
+    }
+
+    splitString('abc,123,hello world', ',');
+    // logs:
+    // abc
+    // 123
+    // hello world
+
+    splitString('hello');
+    // logs:
+    // ERROR: No delimiter
+
+    splitString('hello', '');
+    // logs:
+    // h
+    // e
+    // l
+    // l
+    // o
+
+    splitString('hello', ';');
+    // logs:
+    // hello
+
+    splitString(';hello;', ';');
+    // logs:
+    //  (this is a blank line)
+    // hello
+   </script>
+</body>
+
+Input:
+  - string
+  - delimiter character
+Output: logs multiple strings
+Rules:
+- Log error if only one argument is passed
+Steps:
+- If delimeter is undefined, log error and end program
+- Loop through string
+  - Create output string
+  - If a char is not equal to delimeter, concatenate to output string
+  - If it is, log the output string
