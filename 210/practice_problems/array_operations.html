@@ -54,7 +54,60 @@
     }
 
     function slice(array, start, end) {
-      
+      var newArray = [];
+
+      for (var i = start; i < end; i++) {
+        push(newArray, array[i]);
+      }
+
+      return newArray;
     }
+
+    function splice(array, start, number) {
+      var removedValues = [];
+
+      for (var i = start; i < array.length; i++) {
+        if (i < start + number) {
+          push(removedValues, array[i]);
+        }
+        array[i] = array[i + number];
+      }
+
+      array.length = array.length - number;
+      return removedValues;
+    }
+
+    function concat(arr1, arr2) {
+      var newArray = [];
+
+      for (var i = 0; i < arr1.length; i++) {
+        push(newArray, arr1[i]);
+      }
+
+      for (var i = 0; i < arr2.length; i++) {
+        push(newArray, arr2[i]);
+      }
+
+      return newArray;
+    }
+
+    function join(array, separator) {
+      var outputString = '';
+
+      for (var i = 0; i < array.length; i++) {
+        outputString += String(array[i]);
+
+        if (i < array.length - 1) {
+          outputString += separator;
+        }
+      }
+
+      return outputString;;
+    }
+
+    console.log(join(['bri', 'tru', 'wha'], 'ck '));       // 'brick truck wha'
+    console.log(join([1, 2, 3], ' and '));                 // '1 and 2 and 3'
+
+
   </script>
 </body>
