@@ -1,0 +1,24 @@
+<body>
+  <script>
+    function missing(array) {
+      missingValues = [];
+
+      for (var i = array[0]; i < array[array.length - 1]; i++) {
+        if (!array.includes(i)) {
+          missingValues.push(i);
+        }
+      }
+
+      return missingValues;
+    }
+
+    console.log(missing([-3, -2, 1, 5]));                  // [-1, 0, 2, 3, 4]
+    console.log(missing([1, 2, 3, 4]));                    // []
+    console.log(missing([1, 5]));                          // [2, 3, 4]
+    console.log(missing([6]));                             // []
+  </script>
+</body>
+
+Steps:
+- Loop from first element to last
+  - if input array doesn't contain it, add it

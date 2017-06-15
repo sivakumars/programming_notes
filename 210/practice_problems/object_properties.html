@@ -1,0 +1,57 @@
+<body>
+  <script>
+    function objectHasProperty(object, propertyName) {
+      return Object.keys(object).includes(propertyName);
+    }
+
+    function incrementProperty(object, propertyName) {
+      if (objectHasProperty(object, propertyName)) {
+        object[propertyName] += 1;
+      } else {
+        object[propertyName] = 1;
+      }
+
+      return object[propertyName];
+    }
+
+    function copyProperties(obj1, obj2) {
+      var number_properties = 0;
+
+      for (var prop in obj1) {
+        obj2[prop] = obj1[prop];
+        number_properties++;
+      }
+
+      return number_properties;
+    }
+
+    function wordCount(text) {
+      var count = {};
+      var words = text.split(' ');
+
+      for (var i = 0; i < words.length; i++) {
+        if (count[words[i]]) {
+          count[words[i]] += 1;
+        } else {
+          count[words[i]] = 1;
+        }
+      }
+
+      return count;
+    }
+
+    console.log(wordCount('box car cat bag box'));
+  </script>
+</body>
+
+
+Input: string of text
+Output: object with word counts
+Rules:
+- use words as keys, counts as values
+Steps:
+- Split the text into words
+- Loop through words
+  - if word doesn't exist in object, create it with count of 1
+  - if word does exist, increment count
+- Return object

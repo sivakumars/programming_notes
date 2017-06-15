@@ -1,5 +1,35 @@
 <body>
   <script>
-    
+    function firstElementOf(arr) {
+      return arr[0];
+    }
+
+    function lastElementOf(arr) {
+      return arr[arr.length -1];
+    }
+
+    function nthElementOf(arr, index) {
+      return arr[index];
+    }
+
+    function firstNOf(arr, count) {
+      return arr.slice(0, count);
+    }
+
+    function lastNOf(arr, count) {
+      var starting_position = arr.length - count;
+
+      if (starting_position < 0) {
+        starting_position = 0;
+      }
+
+      return arr.slice(starting_position);
+    }
+
+    function endsOf(beginningArr, endingArr) {
+      return [beginningArr[0], endingArr[endingArr.length -1]];
+    }
+
+    console.log(endsOf([4, 8, 15], [16, 23, 42])); // Returns [4, 42])
   </script>
 </body>

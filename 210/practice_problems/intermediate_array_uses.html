@@ -1,0 +1,86 @@
+<body>
+  <script>
+    function oddElementsOf(arr) {
+      var oddArray = [];
+
+      for (var i = 1; i < arr.length; i += 2) {
+          oddArray.push(arr[i]);
+      }
+
+      return oddArray;
+    }
+
+    function combinedArray(even, odd) {
+      var combinedValues = [];
+
+      for (var i = 0; i < even.length; i++) {
+        combinedValues.push(even[i]);
+        combinedValues.push(odd[i]);
+      }
+
+      return combinedValues;
+    }
+
+    function mirroredArray(array) {
+      // var reversed = [];
+      //
+      // for (var i = array.length - 1; i >= 0; i--) {
+      //   reversed.push(array[i]);
+      // }
+      //
+      // return array.concat(reversed);
+
+      var dup = array.slice();
+      return array.concat(dup.reverse());
+    }
+
+    function sortDescending(arr) {
+      var arrCopy = arr.slice();
+
+      arrCopy.sort(function (a, b) {
+        return b - a;
+      })
+
+      return arrCopy;
+    }
+
+    function matrixSums(arr) {
+      var newArray = [];
+
+      for (var i = 0; i < arr.length; i++) {
+        var sum = 0;
+
+        for (var j = 0; j < arr[i].length; j++) {
+          sum += arr[i][j]
+        }
+
+        newArray.push(sum);
+      }
+
+      return newArray;
+    }
+
+    function uniqueElements(arr) {
+      var uniques = [];
+
+      for (var i = 0; i < arr.length; i++) {
+        if (!uniques.includes(arr[i])) {
+          uniques.push(arr[i])
+        }
+      }
+
+      return uniques;
+    }
+
+    console.log(uniqueElements([1, 2, 4, 3, 4, 1, 5, 4])); // Returns [1, 2, 4, 3, 5]
+    </script>
+</body>
+
+Input: array of arrays
+Output: array
+Rules:
+- Output array should be same # of elements
+- Each element should be the sum of the nested array
+Steps:
+- Loop through each element of input arr
+- Loop through each element of nested array and sum
