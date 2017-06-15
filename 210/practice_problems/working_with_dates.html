@@ -1,5 +1,73 @@
 <body>
   <script>
-    
+    function dateSuffix(dayOfMonth) {
+      var suffix = 'th';
+
+      if (dayOfMonth >= 11 && dayOfMonth <= 13) {
+        suffix = 'th';
+      } else if (dayOfMonth % 10 === 1) {
+        suffix = 'st';
+      } else if (dayOfMonth % 10 === 2) {
+        suffix = 'nd';
+      } else if (dayOfMonth % 10 === 3) {
+        suffix = 'rd';
+      }
+
+      return String(dayOfMonth) + suffix;
+    }
+
+    function formattedMonth(date) {
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+      return months[date.getMonth()];
+    }
+
+    function formattedDay(date) {
+      var daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+      return daysOfWeek[date.getDay()];
+    }
+
+    function formattedDate(date) {
+      var month = formattedMonth(date);
+      var day = formattedDay(date);
+      var date = dateSuffix(date.getDate());
+
+      return "Today's date is " + day + ", " + month + " " + date + "."
+    }
+
+    var today = new Date();
+    console.log(formattedDate(today));
+
+    console.log(today.getFullYear());
+    console.log(today.getYear());
+
+    var tomorrow = new Date(today.getTime());
+    tomorrow.setDate(today.getDate() + 1);
+    console.log(formattedDate(tomorrow));
+
+    var nextWeek = new Date(today.getTime());
+
+    console.log(today);
+    console.log(nextWeek);
+    console.log(today === nextWeek);
+    console.log(today.toDateString() === nextWeek.toDateString());
+
+    nextWeek.setDate(nextWeek.getDate() + 7);
+    console.log(today.toDateString() === nextWeek.toDateString());
+
+    function formatTime(date) {
+      var hours = String(date.getHours());
+      var minutes = String(date.getMinutes());
+
+      return addZero(hours) + ':' + addZero(minutes);
+    }
+
+    function addZero(val) {
+      return (val.length < 2) ? '0' + val : val;
+    }
+
+    console.log(formatTime(today));
+
   </script>
 </body>
