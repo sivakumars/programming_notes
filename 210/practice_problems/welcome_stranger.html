@@ -1,0 +1,22 @@
+<body>
+  <script>
+    function greetings(name, status) {
+      var nameGreet = 'Hello, ';
+
+      for (var i = 0, length = name.length; i < length; i++) {
+        nameGreet += name[i];
+
+        if (i === length - 1) {
+          nameGreet += '!';
+        } else {
+          nameGreet += ' ';
+        }
+      }
+
+      var statusGreet = 'Nice to have a ' + status.title + ' ' + status.occupation + ' around.'
+      return nameGreet + ' ' + statusGreet;
+    }
+
+    console.log(greetings(['John', 'Q', 'Doe'], { title: 'Master', occupation: 'Plumber' }));
+  </script>
+</body>
