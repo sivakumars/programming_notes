@@ -1,0 +1,153 @@
+// Exercise #1
+
+// There is a SyntaxError at the backslash (\) on line 1. The issue is actually on due to several whitespace characters after the backslash at the end of line 5. Chrome gives you a clue by changing the text color from red to black, indicating that the string assignment has actually ended. To avoid this type of error, it's preferred to use concatenation (+) with multi-line strings.
+//
+// The other bug is that the indentation on each code line creates unexpected whitespace between the declared string. This is also avoided if concatenation is used.
+
+// Exercise #2
+
+// 7: "Hello"
+// 11:
+// 15: "World"
+// 19: "!"
+//
+// This is what I expected based on the truthiness rules of strings and arrays.
+
+// Exercise #3
+
+// - condition1 = true; condition2 = true;
+// - condition1 = true; condition2 = false;
+// - condition1 = false; condition4 = true; condition5 = true;
+// - condition1 = false; condition4 = true; condition5 = false;
+// - condition1 = false; condition4 = false;
+
+// Exercise #4
+
+// The first example logs "Alice Bob" because JS is pass-by-value, and assigning name to 'Alice' does not affect the value of 'saveName'.
+//
+// The second example logs "Bob Bob" because JS strings are immutable and a string method will not change the value of the 'name' variable unless it's reassigned.
+//
+// Primitives can still call methods because they actually have object equivalents which wrap around the primitive values. JS converts them to objects to call their method and then converts them back to primitives to return their value.
+
+// Exercise #5
+
+// The results did not match for the addition operation. This is because the input comes in as strings and because strings use the same operator (+) for concatenation, they take precedence over Number addition. Therefore 23 + 17 turns into a string concatenation result of 2317.
+//
+// To fix the issue, we need to cast the strings to numbers, add them, and then explicitly cast them back to a string to concatenate them to the preceding string values.
+//
+// Correction: It's better to just cast the inputs to numbers when they're first assigned. And because the mathematical operations are in parentheses, implicit string coercion will not occur until after the operation is completed.
+
+// Exercise #6
+
+// var phrase = prompt('Please write a phrase: ');
+// var length = phrase.length;
+//
+// console.log('There are ' + length + ' characters in ' + '"' + phrase + '".');
+
+// Exercise #7
+
+// var DIGITS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+//
+// function stringToInteger(str) {
+//   var result = 0;
+//   var length = str.length;
+//   var mult = 1;
+//   var i;
+//
+//   for (i = length - 1; i >= 0; i -= 1, mult *= 10) {
+//     result += DIGITS.indexOf(str[i]) * mult;
+//   }
+//
+//   return result;
+// }
+//
+// console.log(stringToInteger('4321'));          // 4321
+// console.log(stringToInteger('570'));           // 570
+
+// Input: string
+// Output: number
+// Rules:
+// - take string of digits and return number
+// Steps:
+// - Create mapping array
+// - Iterate through characters and create an array of digits
+// - Iterate through characters (in reverse) and map to index value of digits array
+// - Multiple each subsequent result by 10 and add to total
+
+// Exercise #8
+
+<!-- <body>
+  <script>
+    var DIGITS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+    function stringToSignedInteger(str) {
+      var result = 0;
+      var length;
+      var mult = 1;
+      var i;
+
+      if (str[0] === '+') {
+        str = str.slice(1);
+      } else if (str[0] === '-') {
+        mult = -1;
+        str = str.slice(1);
+      }
+
+      length = str.length;
+
+      for (i = length - 1; i >= 0; i -= 1, mult *= 10) {
+        result += DIGITS.indexOf(str[i]) * mult;
+      }
+
+      return result;
+    }
+
+    console.log(stringToSignedInteger('4321'));      // 4321
+    console.log(stringToSignedInteger('-570'));      // -570
+    console.log(stringToSignedInteger('+100'));      // 100
+  </script>
+</body> -->
+
+// Exercise 9
+
+<body>
+  <script>
+    var DIGITS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+    function integerToString(number) {
+      var result = '';
+      var remainder;
+
+      do {
+        remainder = number % 10;
+        result = DIGITS[remainder] + result;
+        number = Math.floor(number / 10);
+      } while (number > 0)
+
+      return result;
+    }
+
+    // console.log(integerToString(4321));    // "4321"
+    // console.log(integerToString(0));       // "0"
+    // console.log(integerToString(5000));    // "5000"
+
+    function signedIntegerToString(number) {
+      var result;
+
+      if (number < 0) {
+        result = '-' + integerToString(-number);
+      } else if (number > 0) {
+        result = '+' + integerToString(number);
+      } else {
+        result = integerToString(number);
+      }
+
+      return result;
+    }
+
+    console.log(signedIntegerToString(4321));      // "+4321"
+    console.log(signedIntegerToString(-123));      // "-123"
+    console.log(signedIntegerToString(0));         // "0"
+
+  </script>
+</body>
