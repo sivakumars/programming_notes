@@ -1,0 +1,33 @@
+1) 'xyz'.upcase
+
+2) a.insert(3, 5, 6, 7)
+
+3)
+
+- ["abc", "def", "ghi,jkl", "mno", "pqr,stu", "vwx", "yz"]
+- ["abc def ghi", "jkl mno pqr", "stu vwx yz"]
+- ["abc def ghi", "jkl mno pqr,stu vwx yz"]
+
+4)
+
+- "4712-01-01"
+- "2016-01-01"
+- "2016-05-01"
+- "2016-05-13"
+
+5) a.bsearch { |element| element > 8 }
+
+6)
+
+- IndexError exception
+- "beats me"
+- 49
+
+7) 5
+   8
+
+8) puts s.public_methods(false).inspect
+
+9) a.min(2)
+
+10) https://ruby-doc.org/stdlib-2.3.1/libdoc/psych/rdoc/Psych.html

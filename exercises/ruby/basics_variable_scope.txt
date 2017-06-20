@@ -1,0 +1,28 @@
+1) 7
+
+2) 7
+
+3) 7
+
+4) Xy-zy
+
+5) Xyzzy
+
+6) 'my_value': undefined local variable or method `a' for main:Object (NameError)'
+
+7) 3
+
+8) Error because 'a' was never defined.
+
+9) 4
+
+a = 7
+
+iteration 1: set a = 1, then a = a + 1 = 2
+iteration 2: set a = 2, then a = a + 1 = 3
+iteration 3: set a = 3, then a = a + 1 = 4
+
+WRONG. Since the block uses the same variable name as an outside variable, it
+hides the local variable (i.e. shadowing).
+
+10) Error because 'a' is visible inside the method.

@@ -1,0 +1,143 @@
+# Exercise 1
+
+Make a madlibs program that reads in some text from a text file that you have created, and then plugs in a selection of randomized nounds, verbs, adjectives, and adverbs into that text and prints it. You can build your lists of nouns, verbs, adjectives, and adverbs directly into your program,  but the text data should come from a file or other external source. Your program should read this text, and for each line, it should place random words of the appopriate types into the text, and print the result. 
+
+Questions:
+- How to determine where to insert the random words? Insert placeholders in the text. 
+
+
+Steps:
+- create a text file with a few sentences. The text should be missing a noun, evrb, adjective, and adverb. 
+- create 4 array constants for nounds, verbs, adjectives, and adverbs
+- Read the text file into a variable
+- Split the text into words
+- If you find [verb] in the array, randomly select a value from verbs constant. Same for each part of speech.
+
+# Exercise 2
+
+Write a method that displays an 8-pointed star in an n x n grid, where n is an odd integer that is supplied as an argument to the method. The smallest such star you need to handle is a 7x7 grid.
+
+Input: number
+Output: printed star
+Rules:
+- input will always be >= 7
+- n is always odd
+
+Steps:
+- Loop from 0 upto (n/2).floor - 1 --> before
+	- Loop from (n/2).floor - 1 downto 0 --> after
+		- Print before spaces
+		- Print star
+		- Print after spaces
+		- Print star
+		- Print before spaces
+		- Print star
+		- Print after spaces
+
+Print n stars with 0 spaces
+
+- Perform mirror of top loops
+
+# Exercise 3/4
+
+Write a method that takes a 3x3 matrix in Array of Arrays format and returns the transpose of the original matrix. You are not allowed to use the Array#transpose method or the Matrix class from the standard library. Take care not to modify the original matrix; you must produce a new matrix and leave the original matrix unchanged.
+
+Input: array of arrays (3x3)
+Output: array of arrays (3x3)
+
+# Exercise 5
+
+90 degree rotation = transpose matrix + reverse each row
+
+# Exercise 6
+
+Write a method that takes an Array, and returns an Array of Arrays that represent the permutations of the original Array. Order doesn't matter. Don't use the Array#permutations method. Assume each element of the array has a unique value. 
+
+Input: Array
+Output: Array of Arrays
+Steps:
+- Break the problem down for 3-element arrays first
+	- Return the original array
+	- Return the original array reversed
+	- Return the original array shifted
+	- Return the shifted array reversed
+	- Return the shifted array shifted
+	- Return the twice-shifted array reversed
+
+# Exercise 7
+
+Input: array
+Output: array
+Rules:
+- empty input --> empty output
+- one input --> output = 3 * input
+- 2+ inputs --> array of squares of input
+
+Clues:
+- there is no evaluation statement after the elsif
+	- it's actually called a "conditional expression"
+
+# Exercise 8
+
+Input: array
+Output: array
+Rules:
+	- arrays must be flattened, merged, and sorted
+	- you cannot use sort method
+	- you cannot mutate input arrays
+Steps:
+- Iterate through 1st array
+	- If element of 1st array is <= to first element of 2nd array
+		- add element of 1st array of results
+		- move to next iteration
+	- if it's not <=
+		- add first element of 2nd array and place in results
+		- repeat iteration except with next index in 2nd array (i.e. compare with 2nd element of 2nd array)
+- Return results array
+
+# Exercise 9
+
+Sort an array of passed in values using merge sort. You can assume that this array may contain only one type of data. And that data may be either all numbers or all strings.
+
+Merge sort is a recursive sorting algorithm that works by breaking down the array elements into nested sub-arrays, then recombining those nested sub-arrays in sorted order. 
+
+# Exercise 10
+
+An Egyption Fraction is the sum of a series of distinct unit fractions. Write two methods: one that takes a Rational number as an argument, and returns an Array of denominators that are part of an Egyptian Fraction representation of that number, and another that takes an Array of numbers in the same format, and calculates the resulting Rational number. You will need to use the Rational class provided by Ruby.
+
+1st method --
+Input: rational number
+Output: array of denominators
+Rules: 
+- use Rational class
+- Edge cases:
+	- if num/den < 1 && numerator = 1, it's already an Egyptian fraction so just place the denominator in an array and you're done.
+
+High-Level Steps:
+- Subtract the largest unit fraction possible from the input.
+- If the number is still > 0, add that unit fraction's denonimator to the output
+- Else, try the next largest unit fraction.
+- After reducing the resulting number to it's smallest fraction, if it has a numerator == 1, we're done
+- Otherwise, we continue
+
+Low-Level Steps:
+- Initialize numerator and denominator variables to the numerator and denominator of the Rational number argument
+- Set number = input
+- Until number < 1:
+	- subtract 1/1, 1/2, 1/3 from number; increasing the denominator by 1 each time and adding the denominator to a results array
+- Once number < 1
+	- Divide denominator/numerator and round the result up
+	- If the results array contains that value, add 1 and check again
+	- Stop once you find a value that doesn't exist in the results already
+	- Subtract 1/(new denominator) from number
+	- Add denominator to the results
+- Repeat dividing the denominator/numerator
+- Break if the numerator of the number == 1
+	
+2nd method ---
+Input: array
+Output: rational number
+Rules:
+- 
+
+

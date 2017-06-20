@@ -1,0 +1,218 @@
+## Exercise 1
+
+Input: text file
+Output:
+- sentence (longest in paragraph)
+- number (number of words in sentence)
+Rules:
+- any sequence of chars that isn't space or . ! ? is a word.
+
+Steps:
+- Open file from disk
+- Read file into a string
+- Split string on spaces
+- Loop through array of words
+	- Add each word to a new array
+	- If the word ends in a . ? ! then create a new array after adding that word
+- Loop through array of setences
+	- count number of words in sentence
+	- store sentence in variable
+	- compare to next sentence
+	- store sentence with higher count
+- Return sentence and sentence count
+
+Steps:
+- Read file into string
+- Walk through string and if you hit a . ? !, push everything upto that punctuation mark into an array
+- Keep doing that until you run out of characters
+
+# Exercise 2
+
+Input: string
+Output: true/false
+Rules: 
+- the string can only contain one letter from each block
+- case doesn't matter
+
+Manual Steps:
+- split the string into characters
+- loop through each character
+	- if the character exists in the collection
+		- remove character and it's pair (i.e. the block) from the collection
+	- else if the charater doesn't exist
+		- return false
+- if the entire loop finishes, return true
+
+Try using an array of arrays. Check if array matches. Remove inner array if it does. 
+
+# Exercise 3
+
+Input: string
+Output: hash with 3 pairs
+	- lowercase: % of chars in string that are lowercase
+	- uppercase: % uppercase
+	- neither: % neither
+- Rules
+	- string is non-empty
+
+Steps:
+- Count total chars
+- Count # of lowercase chars
+- Count # of uppercase chars
+- Count remaining
+- Divide each count by total count
+- Place in hash
+
+Steps:
+- Split the string into array of chars
+- Create 3 variables for upper_count, lower_count, neither count
+- Iterate through string
+	- if char matches lowercase, increment lower_count
+	- if char matches uppercase, increment upper_count
+	- else, increment neither count
+- Add up all counts to get total count
+- Create hash with individual counts divided by total count * 100
+
+# Exercise 4
+
+Write a method that takes a string as argument and returns true if all parenthese in the string are properly balanced, false otherwise. To be properly balanced, parenthese must occur in matching '(' and ')' pairs. 
+
+Input: string
+Output: true/false
+Rules:
+	- # of '(' == # of ')' 
+	- the opening must precede the closing
+	- if there are more closed brackets than open brackets at any time, return false
+
+Steps:
+- create count
+- split string and iterate 
+	- for each open bracket, add one
+	- for each close bracket, subtract 1
+	- if the the count is ever below 0, break and return false
+	- if the count is zero after iteration, return zero, else false
+
+# Exercise 5
+
+To be a valid triangle, the sum of the lengths of the two shortest sides must be greater than the length of the longest side, and all sides must have lengths greater than 0: if either of these conditions is not satisfied, the triangle is invalid. 
+
+Write a method that takes the lengths of the 3 sides of a triangle as arguments, and returns a symbol equilateral, isosceles, scalene, or invalid depending on what type of triangle it is. 
+
+Input: 3 numbers (i.e. triangle side lengths)
+Output: type of triangle or invalid triangle
+Rules:
+- all 3 numbers must be greater than zero
+- the sum of the 2 smaller numbers must be greater than the largest number
+
+Steps:
+- Check if the triangle is valid
+	- iterate through each number to check if any are less than zero, if so, return invalid
+	- check if it's proportionally sized
+		- sort collection by size
+		- check if sum of first 2 is greater than last
+		- if not, return invalid
+- Check type of triangle
+	- if all three numbers are equal, return equilateral
+	- if 2 are equal, return isosceles
+	- else, return scalene
+
+## Exercise 6
+
+Write a method tha takes 3 angles of a triangle as arguments, and returns a symbol (right, acute, obtuse, or invalid), depending on whether the triangle is a right, acute, obtuse, or invalid triangle.
+
+Input: 3 numbers
+Output: symbol
+Rules:
+	- to be a valid triangle:
+		- the sum of the angles == 180
+		- all angles > 0
+	- assume integer valued angles specified in degrees
+
+Steps:
+- create an array of the angles
+- the triangle is invalid if:
+	- the angles includes a 0 value
+	- the sum does not equal 180
+- obtuse if any angle is greater than 90
+- right if any angle == 90
+- all others are acute
+
+## Exercise 7
+
+Write a method that returns the number of Friday the 13ths in theyear passed in as an argument. You may assume that the year is greater than 1752, and you may assume that the same calendar will remain in use for the forseeable future. 
+
+Input: number
+Output: number
+Rules: 
+- input is greater than 1752
+- first day is january 1, 1753 <-- Monday
+- every year has 365 days (except leap year)
+	- leap year every year whose number is perfectly divisible by four - except for years which are both divisible by 100 and not divisible by 400.
+Ideas:
+- can use ruby date class from standard library (require 'date')
+- can use friday class method on a date
+- can check day value of date
+
+Steps:
+- Loop through days in a year
+	- if friday? and day = 13, count +=1
+
+## Exercise 8
+
+Input: number
+Output: number or error message
+Rules:
+- featured number:
+	- odd number (i.e. number.odd? == true)
+	- multiple of 7 (i.e. number % 7 == 0)
+	- no duplicate digits
+
+Steps:
+- return error message if number > (9_876_543_210)
+- loop starting from number + 1
+	- next if number.odd? == false || number % 7 != 0
+	- convert to string
+	- split into chars
+	- next if chars aren't unique
+	- break at botton of loop
+- return number that broke from loop
+
+## Exercise 9
+
+Bubble Sort is one of the simplest sorting algorithms available. It isn't an efficient algorithm, but it's a great exercise for student developers. In this exercise, you will write a method that does a bubble sort of an Array.
+
+A bubble sort works by making multiple passes (iterations) through the Array. On each pass, each pair of consecutive elements is compared. If the first of the two elements is greater than the second, then the two elements are swapped. This process is repeated until a complete pass is made without performing any swaps; at that point, the Array is completely sorted. 
+
+Write a method that takes an Array as an argument, and sorts that Array using the bubble sort algorithm as described. Note that your sort will be "in-place"; that is, you will mutate the Aray passed as an argument. You may assume the Array contains at least 2 elements. 
+
+Input: array
+Output: array
+Rules:
+	- sort numerically (1-9) or alphabetically (A-Z) <-- based on input
+	- assume array has 2+ elements
+Steps:
+	- Check if array contains numbers or strings
+
+- Repeat until no swaps performed
+	- Number:
+		- loop through array's elements from 0 to array.size - 2
+		- if array[element] > array[element+1]
+			- then swap with parallel assignment
+		- use map!
+	- Strings:
+		- loop through array's elements in same way
+		- if element's first character downcased and converted to ascii is greater than next element, swap 
+		
+## Exercise 10
+
+Write a method that computes the difference between the square of the sum of the first n positive integers and the sum of the squares of the first n positive integers.
+
+Input: number
+Output: number
+Rules:
+- input > 0
+Steps:
+- array = 1..input
+	- calculate square_of_sums = reduce(:+)**2
+	- calculate sum_of_squares = array.map(input **2).reduce(:+)
+- return difference

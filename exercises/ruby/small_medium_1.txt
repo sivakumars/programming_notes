@@ -1,0 +1,190 @@
+# Exercise 1
+
+Write a method that rotates an array by moving the first element to the end of the array. The original array should not be modified. Do not use the method Array#rotate or Array#rotate! for your implementation.
+
+rotate_array([7, 3, 5, 2, 9, 1]) == [3, 5, 2, 9, 1, 7]
+rotate_array(['a', 'b', 'c']) == ['b', 'c', 'a']
+rotate_array(['a']) == ['a']
+
+- Create a new array
+- Loop through input array
+	- Skip the first value (index = 0) but append every other value to new array
+- Append first value of input array to new array
+- Return new array
+
+- Create a new array
+- Append array[1..-1]
+- Append array[0]
+- Return new array
+
+# Exercise 2
+
+Write a method that can rotate the last n digits of a number. Note that rotating just 1 digit results in the original number being returned. You may assume that n is always a positive integer. 
+
+rotate_rightmost_digits(735291, 1) == 735291
+rotate_rightmost_digits(735291, 2) == 735219
+rotate_rightmost_digits(735291, 3) == 735912
+rotate_rightmost_digits(735291, 4) == 732915
+
+- Convert integer to a string
+- Split string into array of chars
+- Take the last n chars and apply rotate_array function
+	- array.slice(array.size - n, array.size)
+- Create new array with first (array.size - n) characters
+	- array.slice(0, array.size - n)
+- Append output of rotate_array function
+- Join the array to create a string
+- Convert the string to an integer
+
+# Exercise 3
+
+Write a method that takes an integer as argument and returns the maximum rotation of that argument. 
+
+- Convert integer to string and split into array of digits
+- Take the 1st digit and place it at end of array
+	- Run rotate_array on entire array
+- Take the next digit and place it at end of array
+	- rotate_array on everything except 1st digit
+...
+- Take the last digit and place it at the end of the array
+	- rotate_array on last digit
+- Join the array and convert to an integer
+
+- Convert integer to string and split into array of digits
+- Create new results array
+- Loop from 0 to array.size + 2
+
+# Exercise 4
+
+5 lights: 1, 4
+10 light: 1, 4, 9
+15 lights: 1, 4, 9
+16 lights: 1, 4, 9, 16
+
+Note: the resulting numbers are the squares less than or equal to the repitition you're on. So for 1000, it'll be all the squares of integers until the squared value is greater than 1000.
+
+- Loop starting from 1
+	- square each number
+	- add each squared result to an array
+	- break if the result > 1000
+- Loop from 1 to 1000
+	- if the number is NOT included in the squared array, add it to a lights_off array
+- Return the size of the result array and the values in the lights_off array
+
+# Exercise 5
+
+Write a method that displays 4-pointed diamond in an n x n grid, where n is an odd integer that is supplied as an argument to the method. You may assume that the argument will always be an odd integer.
+
+Input: number, n
+Output: diamond (spaces and asterisks)
+
+diamond (1)
+- 0 spaces, 1 asterisk, 0 spaces
+
+diamond(3)
+- 1 space, 1 asterisk, 1 space
+- 0 spaces, 3 asterisks, 0 spaces
+- 1 space, 1 asterisk, 1 space
+
+diamond(9)
+- 4 spaces, 1 asterisks, 4 spaces
+- 3 spaces, 3 asterisks, 3 spaces
+- 2 spaces, 5 asterisks, 2 spaces
+- 1 spaces, 7 asterisks, 1 spaces
+- 0 spaces, 9 asterisks, 0 spaces
+- 1 spaces, 7 asterisks, 1 spaces
+- 2 spaces, 5 asterisks, 2 spaces
+- 3 spaces, 3 asterisks, 3 spaces
+- 4 spaces, 1 asterisks, 4 spaces
+
+Steps:
+- n/2-0 spaces, 1 asterisks
+- n/2-1 spaces, 3 asterisks
+- n/2-2 spaces, 5 asterisks
+- n/2-3 spaces, 7 asterisks
+- n/2-4 spaces, 9 asterisks
+- Stop when you get to n asterisks
+
+- Loop until asterisks == n
+- Loop again
+
+# Exercise 6
+
+Write a method that implements a miniature stack-and-register-based programming language that has the following commands (n, push, add, sub, mult, div, mod, pop, print). 
+
+Rules:
+- Register should initialize to 0.
+- Commands are given as a string
+- Multiple commands can be given, separated by a space
+
+Steps:
+- Initialize empty stack (i.e. array)
+- Initialize register value to 0
+- Parse string input into commands
+	- Split string into array of commands
+- Loop through command array
+	- Based on command, perform appropriate actions on stack and register
+
+# Exercise 7
+
+Write a method that takes a sentence string as input and returns a new string that contains the original string with any sequence of the words 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine' converted to a string of digits. 
+
+Input: string of words
+Output: string of words with numbers converted to string of digits
+
+Steps:
+- Split string (by space) into words
+- Loop through words
+	- If word is contained in digit hash, replace with corresopnding digit
+	- If not, do nothing
+- Return joined string. 
+
+- Create hash constant with number words (i.e. one) as keys and digits (i.e. '1') as values. 
+- Split string 
+- Loop on words
+	- If word is a key in hash constant, replace with hash value
+	- else, do nothing
+- Join the result and return
+
+Issue: If number has punctuation after it, it doesn't match anything in the digit conversion.
+
+- Check for trailing punctuation
+- Remove last character
+- Check if word includes
+- Add last character
+
+# Exercise 8
+
+Write a recursive method that computes the nth Fibonacci number, where nth is an argument to the method. 
+
+Input: number
+Output: number
+Rules:
+- use recursion
+- make sure to have an ending condition (e.g. n == 1)
+- Fibonacci numbers: 1, 1, 2, 3, 5..
+
+Steps:
+- if n == 1 or n == 0, return 1
+- else:
+	- fibonacci(n-1) + fibonacci(n-2)
+
+# Exercise 9
+
+Steps:
+- initalize array as [1, 1]
+- sum the array and push the value to the array
+- do this until array.size = n
+
+# Exercise 10
+
+Compute a method that returns the last digit of the nth Fibonacci number.
+
+Input: number (nth number in Fib sequence)
+Output: digit (last digit of value of nth number)
+Steps:
+- Calculate Fibonacci sequence
+- Convert number to string
+- Split into chars
+- Select last character
+- Convert to integer and return
