@@ -1,0 +1,53 @@
+<!-- Exercise 1 -->
+
+It will log 'This is global' because within the function a new variable called myVar is declared and that variable is only available within the function.
+
+This ability to access the variables of outer scope is called "lexical scoping".
+
+<!-- Exercise 2 -->
+
+It will log 'This is local' because myVar is reassigned to that value within the function and that is where the print statement is called.
+
+This type of behavior is called shadowing because the myVar variable declared in the function scope has the same name as the myVar variable declared in an outer scope. The outer myVar variable is shadowed.
+
+<!-- Exercise 3 -->
+
+This appears similar to exercise #1. The difference is that myVar isn't declared but instead just reassigned within the inner scope. In Javascript, this reassignment affects the value of myVar in the global scope where it was declared.
+
+Therefore, when console.log is called in the global scope, it will print 'This is local.'
+
+<!-- Exercise 4 -->
+
+It will log 'This is global' because due to lexical scoping, the function has access to global variables declared in outer scope. It will first look in its current scope but since it didn't find a myVar variable, it will look in its nearest scope where it finds it and prints it.
+
+<!-- Exercise 5 -->
+
+Since the variable isn't declared with a 'var' keyword and just assigned to myVar, that variable becomes an automatically global variable (i.e. binds it to be a property of the global object) and is accessible everywhere in the code. So, 'This is global' will print.
+
+<!-- Exercise 6 -->
+
+When a number is passed as an argument to a function, its value is passed and assigned to a new local variable within the function. Therefore, any changes to that variable do not affect the variable that was passed to the function.
+
+The code will print '7'.
+
+<!-- Exercise 7 -->
+
+This is the same as the previous exercise except the same variable name (a) is used. With 'a' passed as a parameter to the function, it declares and assigns a new local variable to the same value as the outer 'a' variable. But any changes to the local variable do not affect the outer variable, despite them having the same name.
+
+The code will still print '7'.
+
+<!-- Exercise 8 -->
+
+When an object is passed as an argument to a function, it passes the value of the object, creating a new local object/variable. But, the data within the object (the properties) contain references.
+
+Therefore, any changes to the data within the object will also affect outer object/variables that contain those same references.
+
+The code will print '[1, 2, 10]'.
+
+<!-- Exercise 9 -->
+
+The declaration 'var a;' will be hoisted above the method call but the assignment 'a =1;' will remain beneath the method call. Therefore, the console will log 'undefined' since the variable has been declared but not assigned.
+
+<!-- Exercise 10 -->
+
+The function declaration will be hoisted above the function call. THerefore, the console will be able to call the function and log 'Hello, world!'.
