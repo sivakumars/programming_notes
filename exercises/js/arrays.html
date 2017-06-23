@@ -1,0 +1,349 @@
+<!-- Exercise 1 -->
+
+When an object (e.g. array) is assigned to a variable, a pointer/reference is created that points to the same values (e.g. elements). Therefore, when you pop a value from myArray, the values in myOtherArray are also affected since they point to the same values.
+
+Line 5 will log '[1, 2, 3]'.
+
+When you reassign myArray in line 7, it changes the value of the reference stored, similar to when you reassign a primitive.
+
+Line 8 will log '[1, 2, 3]'
+
+<!-- Exercise 2 -->
+
+<script> // Alternative 1
+  var myArray = [1, 2, 3, 4];
+  var myOtherArray = [];
+
+  for (var i = 0; i < myArray.length; i += 1) {
+    myOtherArray[i] = myArray[i];
+  }
+
+
+  myArray.pop();
+</script>
+
+<script> // Alternative 2
+  var myArray = [1, 2, 3, 4];
+  var myOtherArray = myArray.slice();
+
+  myArray.pop();
+</script>
+
+<!-- Exercise 3 -->
+
+Input: one array, one object/array/primitive
+Output: one array
+Rules:
+- 1st argument is always an array
+- 2nd argument can be an object (e.g. array) or primitive value
+- the ouput is a new array
+- if the 2nd argument is an object, it should be copied by reference and placed in the output array
+- if the 2nd argument is a primitive, only the value needs to be copied
+
+<script>
+  function concat(array1, secondArgument) {
+    var result = array1.slice();
+    var i;
+
+    if (Array.isArray(secondArgument)) {
+      for (i = 0; i < secondArgument.length; i += 1) {
+        result.push(secondArgument[i]);
+      }
+    } else {
+      result.push(secondArgument);
+    }
+
+    return result;
+  }
+</script>
+
+<!-- Exercise 4 -->
+
+<script>
+  function concat(array) {
+    var result = array.slice();
+    var i;
+    var j;
+
+    for (j = 1; j < arguments.length; j += 1){
+      if (Array.isArray(arguments[j])) {
+        for (i = 0; i < arguments[j].length; i += 1) {
+          result.push(arguments[j][i]);
+        }
+      } else {
+        result.push(arguments[j]);
+      }
+    }
+
+    return result;
+  }
+</script>
+
+<!-- Exercise 5 -->
+
+POP
+------
+
+Input: array
+Output: last element of array
+Rules:
+- remove the last element from the original array
+Steps:
+- Create a result variable and assign it to the last value of the array
+- Reassign the length of the array to one less than the current length
+- Return the result variable
+
+<script>
+  function pop(array) {
+    if (array.length === 0) return 'undefined';
+
+    var result = array[array.length - 1];
+
+    array.length = array.length - 1;
+
+    return result;
+  }
+</script>
+
+PUSH
+------
+
+Input: array and multiple arguments
+Output: length of new array
+Rules:
+- Add arguments to end of first argument (which should be an array)
+- Modify original array
+
+<script>
+  function push() {
+    var i;
+    var array = arguments[0];
+
+    for (i = 1; i < arguments.length; i += 1) {
+      array.push(arguments[i]);
+    }
+
+    return array.length;
+  }
+</script>
+
+<!-- Exercise 6 -->
+
+Input: string or array
+Output: reversed string or reversed array
+Rules:
+- empty input should return empty of same input
+
+<script>
+  function reverse(inputForReversal) {
+    var i;
+    var result = [];
+
+  //   for (i = inputForReversal.length - 1; i >= 0; i -= 1) {
+  // //     result[result.length] = inputForReversal[i];
+  //     result.push(inputForReversal[i]);
+  //   }
+
+    for (i = 0; i < inputForReversal.length; i += 1) {
+      result.unshift(inputForReversal[i]);
+    }
+
+    if (typeof(inputForReversal) === 'string') {
+      return result.join('');
+    } else {
+      return result;
+    }
+  }
+</script>
+
+<!-- Exercise 7 -->
+
+SHIFT
+-----
+
+Input: array
+Output: first element of input array
+Rules:
+- mutate original array
+- remove first element of array and shift everything left
+- return removed element
+Steps:
+- Declare result variable
+- Assign result variable to first element of array
+- Loop starting from 2nd element
+  - Replace preceding element with current element value
+- Chop off last element of array
+- Return result
+
+<script>
+  function shift(input) {
+    var result = input[0];
+    var i;
+
+    for (i = 1; i < input.length; i += 1) {
+      input[i - 1] = input[i];
+    }
+
+    input.pop();
+
+    return result;
+  }
+</script>
+
+UNSHIFT
+--------
+
+Input: array + some number of elements
+Output: array
+Rules:
+- mutate original array
+- add elements to beginning of original array
+- return length of original array
+Steps:
+- Loop through arguments list starting with 1
+  - Loop through original array in reverse
+    - Set succeeding element equal to current element
+  - Set first element to argument
+- Return length of input array
+
+<script>
+  function unshift(input) {
+    var i;
+    var j;
+
+    for (i = 1; i < arguments.length; i += 1) {
+      for (j = input.length - 1; j >= 0; j -= 1) {
+        input[j + 1] = input[j];
+      }
+
+      input[0] = argument[i];
+    }
+
+    return input.length;
+  }
+</script>
+
+<!-- Exercise 8 -->
+
+SLICE
+------
+
+Input: array, 2 indices
+Output: array
+Rules:
+- Create new array; do not mutate original
+- new array contains values of original array between indices (not including value at second index)
+- assume indices > 0
+- if indices are greater than array length, set to array length
+Steps:
+- declare new result array
+- if begin > array length, set it to length
+- if end > array length, set to length
+- loop through input array from begin to end
+  - push values into new array
+
+<body>
+  <script>
+    function slice(array, begin, end) {
+      var result = [];
+      var length = array.length;
+      var i;
+
+      begin = begin > length ? length : begin;
+      end = end > length ? length : end;
+
+      for (i = begin; i < end; i += 1) {
+        result.push(array[i]);
+      }
+
+      return result;
+    }
+  </script>
+</body>
+
+  SPLICE
+  -------
+
+  Input: array, start, deleteCount, items (optional)
+  Output: new array with deleted elements
+  Rules:
+  - items are optional arguments that will be added to array
+  - mutate original array
+  - return new array of removed elements
+  - start and deleteCount are > 0
+  - if start is greater than length, set to length
+  - if deleteCount is greater than # elements from start to end of array, set value of deleteCount to difference between length and start
+  Steps:
+  - declare new removed array
+  - declare new difference variable and set to length - start
+  - if deleteCount is greater than differene, set deleteCount to difference
+  - loop through input array from start to start + deleteCount
+    - push array[i] to removed array
+    - set array[i] = array[i + deleteCount]
+  - shorten array to original length - deleteCount
+  - if arguments,
+  loop through arguments array
+    - set input[start + 1] = input [start]
+    - set input[start] = arguments[i]
+
+<body>
+  <script>
+    function splice(array, start, deleteCount) {
+    }
+
+    console.log(splice([1, 2, 3], 1, 2));                   // [2, 3]
+    console.log(splice([1, 2, 3], 1, 3));                   // [2, 3]
+    console.log(splice([1, 2, 3], 1, 0));                   // []
+    console.log(splice([1, 2, 3], 0, 1));                   // [1]
+    console.log(splice([1, 2, 3], 1, 0, 'a'))               // []
+
+    var arr = [1, 2, 3];
+    console.log(splice(arr, 1, 1, 'two'));                  // [2]
+    console.log(arr);                                       // [1, 'two', 3];
+
+    var arr = [1, 2, 3];
+    console.log(splice(arr, 1, 2, 'two', 'three'));          // [2 ,3]
+    console.log(arr);                                       // [1, "two", "three"]
+
+    var arr = [1, 2, 3];
+    console.log(splice(arr, 1, 0));                         // []
+    console.log(splice(arr, 1, 0, 'a'));                    // []
+    console.log(arr);                                       // [1, 'a', 2, 3]
+
+    var arr = [1, 2, 3];
+    console.log(splice(arr, 0, 0, 'a'));                    // []
+    console.log(arr);                                       // ['a', 1, 2, 3]
+  </script>
+</body>
+
+<!-- Exercise 9 -->
+
+The function declares and returns a new object reference called oddElements. Even though the returned array and the input array contain the same underlying data, they are different references in Javascript's memory store.
+
+When it comes to objects, the only way for the `===` operator to return true is if you're comparing the exact same object references.
+
+<!-- Exercise 10 -->
+
+Input: two arrays
+Output: boolean
+Rules:
+- The arrays should contain the exact same values
+Steps:
+- reassign each array to their sorted versions
+- Loop through one of the arrays
+  - Check if the elements are the same
+  - return false if they aren't
+- if the loop finishes, return true
+
+<script>
+  function areArraysEqual(array1, array2) {
+    array1 = array1.sort();
+    array2 = array2.sort();
+
+    for (var i = 0; i < array1.length; i += 1) {
+      if (array1[i] !== array2[i]) return false;
+    }
+
+    return true;
+  }
+</script>
