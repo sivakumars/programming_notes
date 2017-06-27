@@ -1,0 +1,65 @@
+<!-- Exercise 4 -->
+
+<body>
+  <script>
+  function makeDoubler (caller) {
+    function innerDoubler(number) {
+      console.log('This function was called by ' + caller + '.');
+      return number + number;
+    }
+
+    return innerDoubler;
+  }
+
+    var doubler = makeDoubler('Victor');
+    console.log(doubler(5));
+
+  </script>
+</body>
+
+<!-- Exercise 8 -->
+
+<body>
+  <script>
+    function one() {
+      function log(result) {
+        console.log(result);
+      }
+
+      function anotherOne() {
+        var result = '';
+        for (var i = 0; i < arguments.length; i++) {
+          result += String.fromCharCode(arguments[i]);
+        }
+
+        log(result);
+      }
+
+      function anotherAnotherOne() {
+        console.log(String.fromCharCode('W', 'e', 'l', 'c', 'o', 'm', 'e', ' '));
+        anotherOne('t', 'o', ' ');
+      }
+
+      anotherAnotherOne();
+      anotherOne('t', 'h', 'e', ' ');
+      return anotherOne;
+      }
+
+    one()('M', 'a', 't', 'r', 'i', 'x', '!');
+  </script>
+</body>
+
+- 48: Calls 'one' function, jumping to line 24
+- 25: Declares 'log' function
+- 29: Declares 'anotherOne' function
+- 38: Declares 'anotherAnotherOne' function
+- 43: Calls 'anotherAnotherOne' function, jumping to line 38
+- 39: Logs 'Welcome '
+- 40: Calls 'anotherOne' function with 3 string arguments, jumping to line 29
+- 32: Iterates through 3 arguments and calls 'log' function on 'to ' string, jumping to line 25
+- 26: Logs 'to '
+- 44: Calls 'anotherOne' function again with 4 string arugments, jumping to line 29
+- 32: Iterates through 4 arguments and calls 'log' function on 'the ' string, jumping to line 25
+- 26: Logs 'the '
+- 45: returns 'anotherOne' function
+- 48: Calls 'anotherOne' function with 7 string arguments and like before, eventually logs 'Matrix!'
