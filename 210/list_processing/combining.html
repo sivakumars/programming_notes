@@ -1,0 +1,37 @@
+<body>
+  <script>
+    var names = ['Heather', 'Gisella', 'Katsuki', 'Hua', 'Katy', 'Kathleen', 'Otakar'];
+
+    var letters = names.map(function(item) {
+      return item[0];
+    });
+
+    var occurences = letters.reduce(function(all, item) {
+      all[item] = all[item] || 0;
+      all[item] += 1;
+      return all;
+    }, {});
+
+    var letter = Object.keys(occurences).reduce(function(all, item) {
+      if (occurences[all] > occurences[item]) {
+        return all;
+      } else {
+        return item;
+      }
+    });
+
+    // var letter;
+    //
+    // Object.keys(occurences).forEach(function(item) {
+    //   letter = letter || item;
+    //
+    //   if (occurences[item] > occurences[letter]) {
+    //     letter = item;
+    //   }
+    //
+    //   return letter;
+    // });
+
+    console.log(letter);
+  </script>
+</body>
