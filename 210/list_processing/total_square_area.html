@@ -1,0 +1,34 @@
+<body>
+  <script>
+    function totalArea(rectangles) {
+      var areas = rectangles.map(function(item) {
+        return item[0] * item[1];
+      })
+
+      var totalArea = areas.reduce(function(all, item) {
+        return all + item;
+      })
+
+      return totalArea;
+    }
+
+    var rectangles = [[3, 4], [6, 6], [1, 8], [9, 9], [2, 2]];
+
+    console.log(totalArea(rectangles));
+
+    function totalSquareArea(rectangles) {
+      var squares = rectangles.filter(function(item) {
+        return item[0] === item[1];
+      })
+
+      return totalArea(squares);
+    }
+
+    console.log(totalSquareArea(rectangles)); // 121
+  </script>
+</body>
+
+Array of rectangles --> Array of areas (map)
+Array of areas --> Sum of all areas (reduce)
+
+Array of rectangles --> Array of squares (filter)

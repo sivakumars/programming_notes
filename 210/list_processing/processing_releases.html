@@ -1,0 +1,54 @@
+<body>
+  <script>
+    var newReleases = [
+      {
+        'id': 0,
+        'title': 'Die Hard',
+        'boxart': 'http://cdn-0.nflximg.com/images/2891/DieHard.jpg',
+        'uri': 'http://api.netflix.com/catalog/titles/movies/70111470',
+        'rating': [4.0],
+        'bookmark': [],
+      },
+      {
+        'id': 654356453,
+        'boxart': 'http://cdn-0.nflximg.com/images/2891/BadBoys.jpg',
+        'uri': 'http://api.netflix.com/catalog/titles/movies/70111470',
+        'rating': [5.0],
+        'bookmark': [{ id:432534, time:65876586 }],
+      },
+      {
+        'title': 'The Chamber',
+        'boxart': 'http://cdn-0.nflximg.com/images/2891/TheChamber.jpg',
+        'uri': 'http://api.netflix.com/catalog/titles/movies/70111470',
+        'rating': [4.0],
+        'bookmark': [],
+      },
+      {
+        'id': 675465,
+        'title': 'Fracture',
+        'boxart': 'http://cdn-0.nflximg.com/images/2891/Fracture.jpg',
+        'uri': 'http://api.netflix.com/catalog/titles/movies/70111470',
+        'rating': [5.0],
+        'bookmark': [{ id:432534, time:65876586 }],
+      },
+    ];
+
+    function processReleaseData(data) {
+      var newData = data.filter(function(item) {
+        return (item.id || item.id === 0) && item.title;
+      });
+
+      return newData.map(function(item) {
+        var newItem = {}
+        newItem['id'] = item['id'];
+        newItem['title'] = item['title'];
+        return newItem;
+      });
+    }
+
+    console.log(processReleaseData(newReleases));
+  </script>
+</body>
+
+Array of objects (with all info) --> Array of objects (with both id and title)
+Array of objects (with both) --> Array of objects that only contains both
