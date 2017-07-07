@@ -1,0 +1,41 @@
+<body>
+  <script>
+    var bands = [
+      { name: 'sunset rubdown', country: 'UK', active: false },
+      { name: 'women', country: 'Germany', active: false },
+      { name: 'a silver mt. zion.', country: 'Spain', active: true },
+    ];
+
+    function processBands(data) {
+      return data.map(function(item) {
+        var capitalizedName = capitalizeWords(item.name);
+        var newBandName = removeDots(capitalizedName);
+
+        return {
+          name: newBandName,
+          country: 'Canada',
+          active: item.active,
+        }
+      });
+    }
+
+    function capitalizeWords(string) {
+      return string.split(' ').map(function(item) {
+        return item[0].toUpperCase() + item.slice(1);
+      }).join(' ');
+    }
+
+    function removeDots(string) {
+      return string.replace(/\./g, '');
+    }
+
+    console.log(processBands(bands));
+  </script>
+</body>
+
+
+Array of objects (w/ bad data) --> Array of objects (w/ good data)
+
+MAP
+
+3 separate maps?
