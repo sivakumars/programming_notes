@@ -1,0 +1,32 @@
+<body>
+  <script>
+    function capitalize(text) {
+      var newTextArray = text.split(' ').map(function(word) {
+        return word[0].toUpperCase() + word.slice(1);
+      });
+
+      return newTextArray.join(' ');
+    }
+
+
+    var text = 'The quick brown fox jumps over the lazy dog.';
+    console.log(capitalize(text));
+
+    function countWordInText(word, text) {
+      var count = 0;
+
+      var formatted_text = text.toLowerCase().replace(/[^a-z ]/ig, '');
+
+      formatted_text.split(' ').forEach(function(check_word) {
+        if (check_word === word) {
+          count++;
+        }
+      });
+
+      return count;
+    }
+
+    console.log(countWordInText('the', text));    // 2
+    console.log(countWordInText('dog', text));    // 1
+  </script>
+</body>
