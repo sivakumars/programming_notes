@@ -1,45 +1,57 @@
 <body>
-  <script src="http://dbdwvr6p7sskw.cloudfront.net/210/files/email_data_v2.js"></script>
   <script>
-    function mailCount(emailData) {
-      var emails = emailData.split('##||##').map(function(item) {
-        var email = item.split('#/#');
+function longestSentence(text) {
 
-        return {
-          sender: email[0],
-          subject: email[1],
-          date: new Date(email[2].slice(7)),
-          recipient: email[3],
-          body: email[4],
-        }
-      });
+  var sentences = text.match(/\w.*?[.!?]/g);
+  // var sentences = text.split(/[\.\?\!]/).map(function(sentence) {
+  //   return sentence.trim();
+  // })
 
-      var dates = emails.map(function(item) {
-        return item.date;
-      });
+  var longest = sentences.reduce(function(long, current) {
+    return long.split(' ').length > current.split(' ').length ? long : current;
+  });
 
-      var min_date = dates.reduce(function(min, current_date, index) {
-        return current_date.getTime() < min.getTime() ? current_date : min;
-      });
+  console.log(longest);
+  console.log('The longest sentence has ' + longest.split(' ').length + ' words.');
+}
 
-      var max_date = dates.reduce(function(max, current_date, index) {
-        return current_date.getTime() > max.getTime() ? current_date : max;
-      });
+    var longText = 'Four score and seven years ago our fathers brought forth' +
+    ' on this continent a new nation, conceived in liberty, and' +
+    ' dedicated to the proposition that all men are created' +
+    ' equal.' +
+    ' Now we are engaged in a great civil war, testing whether' +
+    ' that nation, or any nation so conceived and so dedicated,' +
+    ' can long endure. We are met on a great battlefield of that' +
+    ' war. We have come to dedicate a portion of that field, as' +
+    ' a final resting place for those who here gave their lives' +
+    ' that that nation might live. It is altogether fitting and' +
+    ' proper that we should do this.' +
+    ' But, in a larger sense, we can not dedicate, we can not' +
+    ' consecrate, we can not hallow this ground. The brave' +
+    ' men, living and dead, who struggled here, have' +
+    ' consecrated it, far above our poor power to add or' +
+    ' detract. The world will little note, nor long remember' +
+    ' what we say here, but it can never forget what they' +
+    ' did here. It is for us the living, rather, to be dedicated' +
+    ' here to the unfinished work which they who fought' +
+    ' here have thus far so nobly advanced. It is rather for' +
+    ' us to be here dedicated to the great task remaining' +
+    ' before us -- that from these honored dead we take' +
+    ' increased devotion to that cause for which they gave' +
+    ' the last full measure of devotion -- that we here highly' +
+    ' resolve that these dead shall not have died in vain' +
+    ' -- that this nation, under God, shall have a new birth' +
+    ' of freedom -- and that government of the people, by' +
+    ' the people, for the people, shall not perish from the' +
+    ' earth.';
 
-      console.log('Count of Email: ' + emails.length);
-      console.log('Date Range: ' + min_date.toDateString() + ' - ' + max_date.toDateString() );
-    }
+    longestSentence(longText);
 
-    console.log(mailCount(emailData));
   </script>
 </body>
 
-Input: string of data
-Output: number of emails in string; date range of emails
+Input: text
+Output: string; number of words in string
 Steps:
-- Split data string by email delimiter --> array of emails
-- Map each element of array into an email object --> array of email objects
-- Map each array to a date --> array of date strings
-- Convert to date objects --> array of date objects
-- Array of dates --> max date
-- Array of dates --> min date
+- Split text into sentences using delimiters --> Array of sentences
+- Reduce array to longest sentence
