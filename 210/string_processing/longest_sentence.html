@@ -1,0 +1,45 @@
+<body>
+  <script src="http://dbdwvr6p7sskw.cloudfront.net/210/files/email_data_v2.js"></script>
+  <script>
+    function mailCount(emailData) {
+      var emails = emailData.split('##||##').map(function(item) {
+        var email = item.split('#/#');
+
+        return {
+          sender: email[0],
+          subject: email[1],
+          date: new Date(email[2].slice(7)),
+          recipient: email[3],
+          body: email[4],
+        }
+      });
+
+      var dates = emails.map(function(item) {
+        return item.date;
+      });
+
+      var min_date = dates.reduce(function(min, current_date, index) {
+        return current_date.getTime() < min.getTime() ? current_date : min;
+      });
+
+      var max_date = dates.reduce(function(max, current_date, index) {
+        return current_date.getTime() > max.getTime() ? current_date : max;
+      });
+
+      console.log('Count of Email: ' + emails.length);
+      console.log('Date Range: ' + min_date.toDateString() + ' - ' + max_date.toDateString() );
+    }
+
+    console.log(mailCount(emailData));
+  </script>
+</body>
+
+Input: string of data
+Output: number of emails in string; date range of emails
+Steps:
+- Split data string by email delimiter --> array of emails
+- Map each element of array into an email object --> array of email objects
+- Map each array to a date --> array of date strings
+- Convert to date objects --> array of date objects
+- Array of dates --> max date
+- Array of dates --> min date
