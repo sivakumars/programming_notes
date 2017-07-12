@@ -1,0 +1,78 @@
+<body>
+  <script>
+    function complete(rangeString) {
+      var results = [];
+      var rangeFactor = 0;
+
+      rangeString.split(', ').forEach(function(subrange) {
+        var rangeBounds = subrange.split(/[\s\:\-]/).map(Number);
+
+        for (var i = rangeBounds[0]; i <= rangeBounds[1]; i++) {
+          results.push(i + rangeFactor);
+        }
+
+        rangeFactor += 10;
+      });
+
+      return results;
+    }
+
+    console.log(complete('1, 3, 7, 2, 4, 1'));  // [1, 3, 7, 12, 14, 21]
+    console.log(complete('1 3, 1 2'));          // [1, 2, 3, 11, 12]
+    console.log(complete('1:3, 1:2'));          // [1, 2, 3, 11, 12]
+    console.log(complete('1-3, 1-2'));          // [1, 2, 3, 11, 12]
+    console.log(complete('1:5:2'));             // [1, 2, 3, 4, 5, 6 ... 12]
+    console.log(complete('104-2'));             // [104, 105 ... 112]
+    console.log(complete('104-02'));            // [104, 105 ... 202]
+    console.log(complete('545, 64:11'));        // [545, 564, 565 ... 611]
+  </script>
+</body>
+
+Problem Statement: You are given a list of numbers in a "short hand" range notation where only the significant part of the next number is written because we know the numbers are always increasing (e.g. "1, 3, 7, 2, 4 1" represents [1, 3, 7, 12, 14, 21]). Some people use different separators for their ranges (ex. "1 3, 1 2", "1:3, 1:2", "1..3, 1..2" represent the same numbers as [1, 2, 3, 11, 12]) Range limits are always inclusive.
+
+Your job is to return a list of the complete numbers.
+
+The possible separators are: ["-", ":", ".."].
+
+Input: string of digits, commas, and separators
+Output: array of numbers
+Rules:
+-
+
+Examples:
+Data Structure:
+Algorithm:
+
+
+
+
+
+
+
+
+Input: string of ranges
+Output: array
+Rules:
+- The input string is comma-separated by ranges of 10. When you split the string on commas, the first range represents a subrange of digits between 1-9, the second range --> 10-19, and so on.
+- Each subrange is always increasing and the subrange is inclusive between the numbers listed for that range
+- Each range could be separated by -, :, or .., or space
+
+Data Structure:
+- To iterate on each range, it makes sense to use an array for the input string
+- And then another array for splitting each range into the ends of the subrange
+- And obviously need to output an array
+
+Algorithm:
+- Initialize a results array
+- Initialize a range_factor to 0
+- Split the input string on commas to obtain an array of subranges
+- Iterate on the array of subranges
+  - Split each subrange by one of the 4 separators
+  - Iterate from the first element of the subrange to the last element
+    - Push (index values + range factor) into the results array
+  - Increment range factor by 10 for each subrange
+- Return results array
+
+Mistakes:
+- Not fluent with RegEx
+- Forgot to convert array of strings to array of numbers to iterate on their values

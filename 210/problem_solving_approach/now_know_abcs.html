@@ -1,0 +1,65 @@
+<body>
+  <script>
+    function isBlockWord(word) {
+      var blocks = ['b', 'o', 'g', 't', 'v', 'i', 'x', 'k', 'r', 'e', 'l', 'y', 'd', 'q', 'f', 's', 'z', 'm', 'c', 'p', 'j', 'w', 'n', 'a', 'h', 'u'];
+      var chars = word.toLowerCase().split('');
+      var matchingLetterIndex;
+
+      for (var i = 0; i < chars.length; i++) {
+        matchingLetterIndex = blocks.indexOf(chars[i]);
+
+        if (matchingLetterIndex > -1) {
+          if (matchingLetterIndex % 2 === 0) {
+            blocks.splice(matchingLetterIndex, 2);
+          } else {
+            blocks.splice(matchingLetterIndex - 1, 2);
+          }
+        } else {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    console.log(isBlockWord('BATCH'));       // true
+    console.log(isBlockWord('BOY'));         // false
+    console.log(isBlockWord(''));            // true
+    console.log(isBlockWord('batch'));       // true
+    console.log(isBlockWord('live'));        // false
+    console.log(isBlockWord('jest'));        // true
+  </script>
+</body>
+
+Input: string (word)
+Output: boolean
+Rules:
+- Given 13 pairs of letter blocks
+- If the input uses letters from the same block, return false
+- Otherwise, return true
+- If the input uses the same block twice, return false
+- Case doesn't matter
+
+
+Data Structure:
+- Need a structure to store the letter pairs --> array
+- Need to keep track of which pairs have been used in a word
+- Need to iterate through each character of input string --> array
+
+Algorithm:
+- Create array of arrays of string pairs --> [ ['b', 'o'], ['g', 't'] ...]
+- Split input string into array of characters
+- Iterate through array of chars
+  - Look up each char in the lookup array
+  - If found
+    - Remove a nested array that contains the char
+  - If not found
+    - return false
+- If iteration finishes, return true
+
+Mistakes:
+- Wrote out algorithm without feeling confident in the data structure. Had to rethink data structure after I couldn't figure out nested arrays. Made changes directly in code without updating algorithms
+
+Takeaways:
+- break down a problem into smaller problems and solve those
+- spend more time with the algorithm and make sure it works before jumping to code

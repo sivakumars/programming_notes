@@ -1,0 +1,96 @@
+<body>
+  <script>
+    function validLuhn(numStr) {
+      return (calculateCheckSum(numStr) % 10 === 0)
+    }
+
+    function makeLuhn(numStr) {
+      var result;
+
+      if (!validLuhn(numStr)) {
+        var remainder = calculateCheckSum(numStr + '0');
+        var checkDigit = 10 - remainder % 10;
+        result = numStr + String(checkDigit);
+      } else {
+        result = numStr;
+      }
+
+      return result;
+    }
+
+    function calculateCheckSum(numStr) {
+      var digits = numStr.replace(/[^\d]/g,'');
+
+      if (digits.length === 0) {
+        return false;
+      }
+
+      var digitArr = digits.split('').map(Number).reverse();
+
+      var checksum = digitArr.reduce(function(sum, digit, index) {
+        var result;
+
+        if (index % 2 === 1) {
+          result = digit * 2;
+
+          if (result >= 10) {
+            result = result - 9;
+          }
+
+        } else {
+          result = digit;
+        }
+
+        return sum + result;
+      });
+
+      return checksum;
+    }
+
+    console.log(validLuhn('2323 2005 7766 3554')); // true
+    console.log(validLuhn('8763')); // true
+    console.log(validLuhn('1111')); // false
+    console.log(validLuhn('aaaa'));  // false
+    console.log(validLuhn(''));      // false
+    console.log(validLuhn('0'));     // true
+    console.log(makeLuhn('2323 2005 7766 355')); // '2323200577663554'
+    console.log(makeLuhn('2323 2005 7766 3554')); // '2323200577663554'
+  </script>
+</body>
+
+Input: string of chars
+Output: boolean
+Rules:
+- Ignore non-numeric characters
+- Compute checksum of each remaining string of digits
+
+Data Structure:
+- Use array since need to iterate in reverse through digits and perform numeric operations
+
+Steps:
+- Strip non-numeric chars from string
+- Split string of digits into array of chars
+- Reverse the array
+- Iterate through each digit
+  - if index is odd, double it
+    - if result of doubling is > 10, subtract 9
+- Reduce the array to a checksum
+- Return result % 10 === 0
+
+Mistakes:
+- Didn't know that '\d' would match only digits. used '\D' at first
+- Forgot that I needed to map an array of chars to array of numbers
+- Rushed into using reduce and glossed over details of checksum calcuation
+- Forgot that you need to a return a value for every element in a map or reduce
+
+Input:
+- string
+Output:
+- valid number (with check digit appended if necessary)
+
+Steps:
+- if it's not valid luhn:
+  - add '0' to the end and find the checksum remainder
+  - append checksum remainder to original input
+- return appended number
+- else return input

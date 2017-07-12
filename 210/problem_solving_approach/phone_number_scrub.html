@@ -1,0 +1,52 @@
+<body>
+  <script>
+    function phone_number_scrub(phone_number) {
+      var stripped = phone_number.replace(/[\s\.\(\)\-]/g, '');
+      var len = stripped.length;
+      var result;
+
+      if (len === 10) {
+        result = stripped;
+      } else if (len === 11 && stripped[0] === '1') {
+        result = stripped.slice(1);
+      } else {
+        result = '0000000000'
+      }
+
+      return result;
+    }
+
+    console.log(phone_number_scrub('(123)-123-1234')); // '1231231234'
+    console.log(phone_number_scrub('123.123.1234'));      // '1231231234'
+    console.log(phone_number_scrub('4-123-123-1234'));    // '0000000000'
+    console.log(phone_number_scrub('1-123-123-1234'));    // '1231231234'
+    console.log(phone_number_scrub('13-123-1234'));    // '0000000000'
+    console.log(phone_number_scrub('123-  123-1234'));  // '1231231234'
+    console.log(phone_number_scrub('1234'));             // '0000000000'
+  </script>
+</body>
+
+/*
+
+Input: string of characters
+Output:
+- string of 10 digits
+- string of 10 '0's for invalid phone numbers
+
+Rules:
+- strip input of spaces, dashes, periods, and parentheses
+- if stripped input is < 10 or > 11 digits, it's invalid
+- if it's 11 digits and 1st digit is not '1', its invalid
+- if it's 11 digits and 1st digit is '1', strip the '1' too
+
+Steps:
+- Remove spaces, dashes, periods, and parenthese from input string
+- If the resulting string's len < 10 or > 11, return '0000000000'
+- If the resulting string is 11 and first digit isn't '1', return '0000000000'
+- If it is a '1', strip the '1'
+- Return final string
+
+
+
+
+*/
