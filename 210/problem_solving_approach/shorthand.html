@@ -18,7 +18,6 @@
     }
 
     console.log(complete('1, 3, 7, 2, 4, 1'));  // [1, 3, 7, 12, 14, 21]
-    console.log(complete('1 3, 1 2'));          // [1, 2, 3, 11, 12]
     console.log(complete('1:3, 1:2'));          // [1, 2, 3, 11, 12]
     console.log(complete('1-3, 1-2'));          // [1, 2, 3, 11, 12]
     console.log(complete('1:5:2'));             // [1, 2, 3, 4, 5, 6 ... 12]
@@ -28,7 +27,46 @@
   </script>
 </body>
 
-Problem Statement: You are given a list of numbers in a "short hand" range notation where only the significant part of the next number is written because we know the numbers are always increasing (e.g. "1, 3, 7, 2, 4 1" represents [1, 3, 7, 12, 14, 21]). Some people use different separators for their ranges (ex. "1 3, 1 2", "1:3, 1:2", "1..3, 1..2" represent the same numbers as [1, 2, 3, 11, 12]) Range limits are always inclusive.
+Algorithm:
+- Initialize result array
+- Iterate
+
+1) Initialize result array
+2) Split(', ') into an array of strings [ ['545'], ['64:11'] ]
+3) Initialize temporary array
+4) For each string:
+    - If a string contains a range separator:
+      - Split it on the separator --> Array strings ['64', '11']
+      - Convert array of strings --> array of numbers [64, 11]
+      - Function: Array of increasing significant parts --> Array of full numbers [64, 111]
+      - For each array of numbers, iterate from first element to last element
+        - Push the index value into the temporary array
+      - Assign temporary array to same variable as array split in Step 2
+    - Else: convert array of strings to array of numbers
+5) Function: Array of increasing significant parts --> Array of full numbers [545, 64, 111]
+6) Return result array
+
+Function: Array of increasing significant parts --> Array of full numbers
+    - Initialize result array for full numbers
+    - For each number in array, starting with 2nd element
+      - Convert each number to string and split
+      - Convert all chars back to numbers
+      - Assign difference between lengths of array and previous array to a variable
+      - Add first number of elements equal to difference to the front of the 2nd array
+      - Increment the index of the (difference - 1) element by 1
+      - For each array:
+        - Convert numbers to strings and join and then convert back to number
+    - For each number in array, [104, 102]
+      - Initialize an initial value to 0
+      - If value > initial value:
+        - Push value to result array
+        - Asssign initial value to most recently pushed value
+      - Else:
+        - Assign initial value = value + 10
+        - Push value + 10 to results array
+        - Assign initial value to most recently pushed value
+
+Problem Statement: You are given a list of numbers in a "short hand" range notation where only the significant part of the next number is written because we know the numbers are always increasing (e.g. "1, 3, 7, 2, 4 1" represents [1, 3, 7, 12, 14, 21]). Some people use different separators for their ranges (ex. "1 3, 1 2", "1:3, 1:2", "1..3, 1..2" represent the same numbers as [1, 2, 3, 11, 12]). Range limits are always inclusive.
 
 Your job is to return a list of the complete numbers.
 
@@ -36,19 +74,17 @@ The possible separators are: ["-", ":", ".."].
 
 Input: string of digits, commas, and separators
 Output: array of numbers
-Rules:
--
+Requirements:
+- Numbers are either comma-separated or range-notated
+- When comma separated, only the significant part of each number is written (e.g. the ones place) because it's assumed numbers are always increasing
+- A range is notated with either a '-', ':', or '..'
+- The second part of a range notation is also notated with just the significant part written.
+- The significant part can include multiple digits, and the first digit (starting from the right side) that is left out is what is incremented and determines the end of the range.
+- Range limits are inclusive
 
 Examples:
 Data Structure:
-Algorithm:
-
-
-
-
-
-
-
+- Since I'll need to mutate number values, a list is necessary. Although I don't see a need for an object, so an array will do.
 
 Input: string of ranges
 Output: array
