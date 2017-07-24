@@ -1,331 +1,356 @@
-// Uppercase Check
+// Rotation Part 1
 //
-// Input: string
-// Output: boolean
+// Input: array
+// Output: new array
 // Requirements:
-// - if all alphabetic chars are uppercase, return true
-// - else, return false
-// - Ignore non-alpha characters
+// - move the first element of an array to the end
+// - do not modify the original array
+// - if the input is not an array, return undefined
+// - if the input is empty array, return empty array
 //
 // Algorithm:
-// - Replace all non-alpha chars with blanks
-// - For loop from 0 to replacedString.length
-//   - if char.toUpperCase !== char, return false
-// - If loop finishes, return true
+// - If the input is not an array, return undefined
+// - If the input is empty array, return empty array
+// - Initialize a new result array
+// - For loop from 1 to length of input array
+//   - Push each value to result array
+// - Push first value of input array to result array
 
-// function isUppercase(string) {
-//   var replaced = string.replace(/[^a-z]/ig, '');
-//
-//   for (var i = 0; i < replaced.length; i++) {
-//     if (replaced[i] !== replaced[i].toUpperCase()) {
-//       return false;
-//     }
-//   }
-//
-//   return true;
-// }
-//
-// console.log(isUppercase('t'));          // false
-// console.log(isUppercase('T'));          // true
-// console.log(isUppercase('Four Score')); // false
-// console.log(isUppercase('FOUR SCORE')); // true
-// console.log(isUppercase('4SCORE!'));    // true
-// console.log(isUppercase(''));           // true
-//
-// Delete Vowels
-//
-// Input: array of strings
-// Output: array of strings
-// Requirements:
-// - Remove vowels from every string in the array
-//
-// Algorithm:
-// - for each string in the array:
-//   - map the string to a string without vowels
-//     - use regex to replace vowels
-// - return mapped array
+function rotateArray(array) {
+  if (!Array.isArray(array)) {
+    return undefined;
+  } else if (array.length === 0) {
+    return [];
+  }
 
-// function removeVowels(strings) {
-//   return strings.map(function(string) {
-//     return string.replace(/[aeiou]/ig, '');
-//   });
-// }
+  return array.slice(1).concat(array[0]);
+}
 //
-// console.log(removeVowels(['abcdefghijklmnopqrstuvwxyz']));             // ['bcdfghjklmnpqrstvwxyz']
-// console.log(removeVowels(['green', 'YELLOW', 'black', 'white']));      // ['grn', 'YLLW', 'blck', 'wht']
-// console.log(removeVowels(['ABC', 'AEIOU', 'XYZ']));                    // ['BC', '', 'XYZ']
+// console.log(rotateArray([7, 3, 5, 2, 9, 1]));   // [3, 5, 2, 9, 1, 7]
+// console.log(rotateArray(['a', 'b', 'c']));      // ['b', 'c', 'a']
+// console.log(rotateArray(['a']));                // ['a']
+// console.log(rotateArray([1, 'a', 3, 'c']));;   // [ 'a', 3, 'c', 1 ]
+// console.log(rotateArray([{a: 2}, [1, 2], 3])); // [ [1, 2], 3, {a: 2} ]
+// console.log(rotateArray([]));                   // []
+//
+// // return undefined if the argument is not an array
+// console.log(rotateArray());                   // undefined
+// console.log(rotateArray(1));                  // undefined
+// the input array is not mutated
+// x = [1, 2, 3, 4]
+// console.log(rotateArray(x));                  // [2, 3, 4, 1]
+// console.log(x)                  // [1, 2, 3, 4]
 
-// Lettercase Counter
+// Rotation Part 2
 //
-// Input: string
-// Output: object with 3 properties
-// Requirements:
-// - write a function that takes a string
-// - returns an object with 3 properties
-//    - lowercase
-//    - uppercase
-//    - neither
-//
-// Algorithm:
-// - Initialize a result object
-// - assign values to properties
-//   - assign uppercase and lowercase variables to make neither calculation simpler
-//   - uppercase: use regex to find matches for uppercase letters and find length of matchs return value
-//   - lowercase: same except use lowercase letter regex
-//   - neither: subtract uppercase and lowercase from length of string
-// - return object
-
-// function letterCaseCount(string) {
-//   var uppercase = string.match(/[A-Z]/g) || [];
-//   var lowercase = string.match(/[a-z]/g) || [];
-//
-//   return {
-//     lowercase: lowercase.length,
-//     uppercase: uppercase.length,
-//     neither: string.length - uppercase.length - lowercase.length,
-//   }
-// }
-//
-//
-// console.log(letterCaseCount('abCdef 123')); // { lowercase: 5, uppercase: 1, neither: 4 }
-// console.log(letterCaseCount('AbCd +Ef'));   // { lowercase: 3, uppercase: 3, neither: 2 }
-// console.log(letterCaseCount('123'));        // { lowercase: 0, uppercase: 0, neither: 3 }
-// console.log(letterCaseCount(''));           // { lowercase: 0, uppercase: 0, neither: 0 }
-
-// Capitalize Words
-//
-// Input: string
-// Output: string
-// Requirements:
-// - return a new string
-// - with every word having its first char capitalized and everything else lowercase
-// - assume that a word is a sequence of nonblank characters
-//
-// Algorithm:
-// - Split the text into an array of words (strings)
-// - For each string in the array
-//   - Map the string to a capitalized string
-//     - Slice the first character and apply toUpperCase
-//     - APpend the remaining characters and apply toLowerCase
-// - Return the mapped array joined
-
-// function wordCap(text) {
-//   var capitalizedWords = text.split(' ').map(function(word) {
-//     return word.slice(0, 1).toUpperCase() + word.slice(1).toLowerCase();
-//   });
-//
-//   return capitalizedWords.join(' ');
-// }
-//
-// console.log(wordCap('four score and seven'));    // 'Four Score And Seven'
-// console.log(wordCap('the javaScript language')); // 'The Javascript Language'
-// console.log(wordCap('this is a "quoted" word')); // 'This Is A "quoted" Word'
-
-// Swap Case
-//
-// Input: string
-// Output: string
-// Requirements:
-// - Swap all lowercase letters with their uppercase equivalent
-// - Leave non-alpha characters alone
-//
-// Algorithm:
-// - Split string into array of chars
-// - For each char in array, map:
-//   - If it matches regex uppercase, apply lowercase and return char
-//   - If it matches regex lowercase, apply uppercase and return char
-//   - Else, return char
-// - Join and return
-
-// function swapcase(string) {
-//   var swappedChars = string.split('').map(function(char) {
-//     if (char.match(/[A-Z]/)) {
-//       return char.toLowerCase();
-//     } else if (char.match(/[a-z]/)) {
-//       return char.toUpperCase();
-//     } else {
-//       return char;
-//     }
-//   });
-//
-//   return swappedChars.join('');
-// }
-//
-// console.log(swapcase('CamelCase'));         // 'cAMELcASE'
-// console.log(swapcase('Tonight on XYZ-TV')); // 'tONIGHT ON xyz-tv'
-
-// Staggered Caps Part 1
-//
-// Input: string
-// Output: string
-// Requirements:
-// - Alternate capialization of each char in a string
-// - Start with a capital letter for the first char
-// - Non-alpha chars should count in the alternation
-//
-// Algorithm:
-// - Split string into array of chars
-// - For each char, map to:
-//   - if index is even, toUpperCase
-//   - else, tolowerCase
-// - return array joined into string
-
-// function staggeredCase(string) {
-//   var alternatedArray = string.split('').map(function(char, index) {
-//     if (index % 2 === 0) {
-//       return char.toUpperCase();
-//     } else {
-//       return char.toLowerCase();
-//     }
-//   });
-//
-//   return alternatedArray.join('');
-// }
-
-// console.log(staggeredCase('I Love Launch School!'));     // 'I LoVe lAuNcH ScHoOl!'
-// console.log(staggeredCase('ALL_CAPS'));                  // 'AlL_CaPs'
-// console.log(staggeredCase('ignore 77 the 444 numbers')); // 'IgNoRe 77 ThE 444 NuMbErS'
-
-// Staggered Caps Part 2
-//
-// Input: string
-// Output: string
-// Requirements:
-// - this time, ignore non-alpha characters in the alternating count
-//
-// Algorithm:
-// - Split string into array of chars
-// - Set toUpper variable to true.
-// - For each char in array, map to:
-//   - If its not a letter, return char
-//   - else if toUpper is true, switch toUpper, return uppercase
-//   - else, switchtoUpper, return lowercase
-// - Join and return string
-
-// function staggeredCase(string) {
-//   var toUpper = true;
-//
-//   var staggered = string.split('').map(function(char){
-//     if (char.match(/[^a-z]/ig)) {
-//       return char;
-//     } else if (toUpper) {
-//       toUpper = !toUpper;
-//       return char.toUpperCase();
-//     } else {
-//       toUpper = !toUpper;
-//       return char.toLowerCase();
-//     }
-//   });
-//
-//   return staggered.join('');
-// }
-//
-// console.log(staggeredCase('I Love Launch School!'));     // 'I lOvE lAuNcH sChOoL!'
-// console.log(staggeredCase('ALL CAPS'));                  // 'AlL cApS'
-// console.log(staggeredCase('ignore 77 the 444 numbers')); // 'IgNoRe 77 ThE 444 nUmBeRs'
-
-// How long are you
-//
-// Input: string
-// Output: array of strings
-// Requirements:
-// - write a function
-// - return array with every word and its length appended to it with a blank space separator
-// - assume that words are separated by a space in the input string
-//
-// Algorithm:
-// - Split string into an array of strings
-// - For each word in array, map to:
-//   - return string + string.length
-// - Return mapped array
-
-// function wordLengths(words) {
-//   if (!words) {
-//     return [];
-//   }
-//
-//   return words.split(' ').map(function(word) {
-//     return word + ' ' + String(word.length);
-//   });
-// }
-//
-// console.log(wordLengths('cow sheep chicken'));
-// // result
-// ['cow 3', 'sheep 5', 'chicken 7']
-//
-// console.log(wordLengths('baseball hot dogs and apple pie'));
-// // result
-// ['baseball 8', 'hot 3', 'dogs 4', 'and 3', 'apple 5', 'pie 3']
-//
-// console.log(wordLengths('It ain\'t easy, is it?'));
-// // result
-// ['It 2', 'ain\'t 5', 'easy, 5', 'is 2', 'it? 3']
-//
-// console.log(wordLengths('Supercalifragilisticexpialidocious'));
-// // result
-// ['Supercalifragilisticexpialidocious 34']
-//
-// console.log(wordLengths(''));
-// // result
-// []
-
-// Search Word Part 1
-//
-// Input: searchQuery (string), text (string)
+// Input: number (number), # of digits (number)
 // Output: number
 // Requirements:
-// - Taking text and a searchQuery, return the number of times the searchQuery appears in the text
-// - Assume both arguments will always be provided as arguments
+// - rotate last n digits of a number
+// - shift n digits to the left and move leftmost digit to the right-end
 //
 // Algorithm:
-// - Split text into array of strings
-// - For each word in array, filter if:
-//   - word === searchQuery
-// - return the count of the filtered array
-
-// function searchWord(searchQuery, text) {
-//   return text.split(' ').filter(function(word) {
-//     return word.toLowerCase() === searchQuery.toLowerCase();
-//   }).length;
-// }
-
-// function searchWord(word, text) {
-//   var regex = new RegExp('\\b' + word + '\\b', 'gi');
-//   var matches = text.match(regex);
-//   return matches ? matches.length : 0;
-// }
+// - Convert number to string
+// - Split string into array of chars
+// - Convert array of chars --> array of digits (MAP)
+// - RotateArray Function: Pass in digits to be rotated by slicing array based on # of digits
+// - take slice of unrotated digits concatenated with result of rotated digits function
+// - Convert array of digits --> array of chars
+// - Join into string
+// - Convert back to number and return
 //
-// var text = 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?'
-//
-// console.log(searchWord('sed', text));;   // 3
-// console.log(searchWord('qui', text));   // should only return 4, NOT 13
+// - Function RotateArray of Digits:
+//   - Use function from previous exercise
 
-// Search Word Part 2
+function rotateRightmostDigits(number, n) {
+  var unrotatedArray = String(number).split('').map(Number);
+  var toRotate = unrotatedArray.slice(unrotatedArray.length - n);
+  var noRotate = unrotatedArray.slice(0, unrotatedArray.length - n);
+
+  var rotatedArray = noRotate.concat(rotateArray(toRotate));
+
+  return Number(rotatedArray.map(String).join(''));
+}
 //
-// Input: text (string), searchQuery (string)
-// Output: text (string)
+// console.log(rotateRightmostDigits(735291, 1)); // 735291
+// console.log(rotateRightmostDigits(735291, 2)); // 735219
+// console.log(rotateRightmostDigits(735291, 3)); // 735912
+// console.log(rotateRightmostDigits(735291, 4)); // 732915
+// console.log(rotateRightmostDigits(735291, 5)); // 752913
+// console.log(rotateRightmostDigits(735291, 6)); // 352917
+
+// Rotation Part 3
+//
+// Input: number
+// Output: number
 // Requirements:
-// - return text with all occurences of searchQuery "highlighted"
-// - "highlighted" means **UPPERCASEDWORD**
-// Algorithm:
-// - Split text into array of words
-// - For each word in array, map to:
-//   - if searchQuery.lowercase === word.lowercase, return highlighted word
-//   - else, return word
-// - Return and join array
+// - Perform maximum rotation of a number, which means:
+//   - Run rotateRightmostDigits(number, 5)
+//   - Run rotateRightmostDigits(number, 4)
+//   - ...
+//   - Run rotateRightmostDigits(number, 2)
 
-// function searchWord(searchQuery, text) {
-//   var highlights = text.split(' ').map(function(word){
-//     if (searchQuery.toLowerCase() === word.toLowerCase()) {
-//       return '**' + word.toUpperCase() + '**';
-//     } else {
-//       return word;
+// function maxRotation(number) {
+//   numLength = String(number).length;
+//
+//   for (var i = numLength; i > 1; i--) {
+//     number = rotateRightmostDigits(number, i);
+//   }
+//
+//   return number;
+// }
+//
+// console.log(maxRotation(735291));        // 321579
+// console.log(maxRotation(3));             // 3
+// console.log(maxRotation(35));            // 53
+// console.log(maxRotation(105));           // 15 # the leading zero gets dropped
+// console.log(maxRotation(8703529146));    // 7321609845
+
+// Stack Machine Interpretation
+//
+// Input: text containing instructions and numbers (string)
+// Output: depends on instructions (e.g. PRINT)
+// Requirements:
+// - implement a stack and register language
+//   - stack --> last in, first out; like an array using push and pop
+//   - register --> separate variable
+// - run instructions in order from left to right of string
+// - stack and register are initially both empty
+//   - stack --> []
+//   - register --> 0
+// - Possible inputs in the string:
+//   - number --> set register to that value
+//   - PUSH, ADD, SUB, MULT, DIV, MOD, POP (corresponding operation)
+//   - PRINT --> log the current register value
+// - assume that all instructions dont contain errors or invalid inputs
+//
+// Algorithm:
+// - Initialize stack to empty array and register to 0
+// - Split input on spaces into array of strings
+// - For each string in array:
+//   - If its a number: convert to number and assign to register
+//   - Else if "PUSH": push current register value to stack (leave in register too)
+//   - Else if "ADD": Pop value from stack and add it to the current register value
+//   - Else if "SUB": Pop from stack and substract from register
+//   - Else if "MULT": Pop and multiply
+//   - "DIV": Pop and divide
+//     - Take Math.floor of result
+//   - "MOD": Pop and store remainder in register
+//   - "POP": Pop and place popped value in register
+//   - "PRINT": Print the current register value
+
+
+// function minilang(program) {
+//   var stack = [];
+//   var register = 0;
+//
+//   program.split(' ').forEach(function(instruction) {
+//     if (Number(instruction)) {
+//       register = Number(instruction);
+//     } else if (instruction === 'PUSH') {
+//       stack.push(register);
+//     } else if (instruction === 'ADD') {
+//       register += stack.pop();
+//     } else if (instruction === 'SUB') {
+//       register -= stack.pop();
+//     } else if (instruction === 'MULT') {
+//       register *= stack.pop();
+//     } else if (instruction === 'DIV') {
+//       register = Math.floor(register / stack.pop());
+//     } else if (instruction === 'MOD') {
+//       register %= stack.pop();
+//     } else if (instruction === 'POP') {
+//       register = stack.pop();
+//     } else if (instruction === 'PRINT') {
+//       console.log(register);
 //     }
 //   });
-//
-//   return highlights.join(' ');
 // }
 //
-// var text = 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?'
+// console.log(minilang('PRINT'));
+// // 0
 //
-// console.log(searchWord('sed', text));
+// console.log(minilang('5 PUSH 3 MULT PRINT'));
+// // 15
+//
+// console.log(minilang('5 PRINT PUSH 3 PRINT ADD PRINT'));
+// // 5
+// // 3
+// // 8
+//
+// console.log(minilang('5 PUSH POP PRINT'));
+// // 5
+//
+// console.log(minilang('3 PUSH 4 PUSH 5 PUSH PRINT ADD PRINT POP PRINT ADD PRINT'));
+// // 5
+// // 10
+// // 4
+// // 7
+//
+// console.log(minilang('3 PUSH PUSH 7 DIV MULT PRINT '));
+// // 6
+//
+// console.log(minilang('4 PUSH PUSH 7 MOD MULT PRINT '));
+// // 12
+//
+// console.log(minilang('-3 PUSH 5 SUB PRINT'));
+// // 8
+//
+// console.log(minilang('6 PUSH'));
+// // (nothing printed; no PRINT commands)
+
+// Word to Digit
+//
+// Input: text (string)
+// Output: text (string)
+// Requirements:
+// - return a new string
+// - ouput should replace numbers (written as words) to their number counterparts
+//
+// Algorithm:
+// - Create NUM_DICT constant array ['zero', 'one', ... , 'nine']
+// - Split text on spaces into array of words
+// - For each word:
+      // - extract letters only and check
+//   - if the word exists in NUM_DICT --> set index = NUM_DICT.indexOf(word); if index >= 0, then:
+//     - map word to index
+//   - else:
+//     - map it to same word
+// - Return mapped array joined on spaces
+
+// Options:
+// - Match word on letters and check for that onl
+
+// Algorithm 2:
+// - For each word in NUM_DICT:
+//   - Create regex with that word
+//   - Replace all regex matches in text
+
+// function wordToDigit(text) {
+//   NUM_DICT = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+//
+//   NUM_DICT.forEach(function(numWord, index) {
+//     var regex = new RegExp(numWord, 'g');
+//     text = text.replace(regex, String(index));
+//   });
+//
+//   return text;
+// }
+//
+// console.log(wordToDigit('Please call me at five five five one two three four. Thanks.'));
+// //'Please call me at 5 5 5 1 2 3 4. Thanks.'
+//
+// Fibonacci Numbers (Recursion)
+//
+// Input: n (number)
+// Output: number
+// Requirements:
+// - return the nth fibonacci number, given n
+//   - fibonacci is the sum of the previous two numbers
+// - the first two fibonacci numbers are 1 and 1, the third is 1 + 1 = 2
+//
+// Algorithm:
+// - if n === 1 or n === 2, return 1
+// - else:
+//   - return fib(n-1) + fib(n-2)
+
+// function fibonacci(n) {
+//   if (n <= 2) {
+//     return 1;
+//   } else {
+//     return fibonacci(n - 1) + fibonacci(n - 2);
+//   }
+// }
+//
+// console.log(fibonacci(1));   // 1
+// console.log(fibonacci(2));   // 1
+// console.log(fibonacci(3));   // 2
+// console.log(fibonacci(4));   // 3
+// console.log(fibonacci(5));   // 5
+// console.log(fibonacci(12));  // 144
+// console.log(fibonacci(20));  // 6765
+
+// Fibonacci Numbers (Procedural)
+
+// Input: n (number)
+// Output: number
+// Requirements:
+// - return the nth fibonacci number, given n
+//   - fibonacci is the sum of the previous two numbers
+// - the first two fibonacci numbers are 1 and 1, the third is 1 + 1 = 2
+
+// Algorithm:
+// - Set firstNum to 1
+// - Set secondNum to 1
+// - Set index = 3
+// - Initialize result variable
+// - Loop while index is less than or equal n (input)
+//   - Add firstNum and secondNum and assign to result
+//   - set secondNum to result and firstNum to secondNum
+//   - Increment index
+// - Return result
+//
+// first = 1, second = 1, index = 3, n = 5
+// result = 2 --> second = 2, first = 1, index = 4, n = 5
+// result = 3, second = 3, first = 2, index = 5, n = 5
+
+// function fibonacci(n) {
+//   var first = 1;
+//   var second = 1;
+//   var index = 3;
+//   var result;
+//
+//   if (n <=2) {
+//     return 1;
+//   }
+//
+//   while (index <= n) {
+//     result = first + second;
+//     first = second;
+//     second = result;
+//     index++;
+//   }
+//
+//   return result;
+// }
+//
+// console.log(fibonacci(4));    // 5
+// console.log(fibonacci(20));   // 6765
+// console.log(fibonacci(50));   // 12586269025
+// console.log(fibonacci(100));  // 354224848179261915075
+
+// Fibonacci Numbers (Memoization)
+//
+// Requirements:
+// - use memoization to store computed answers in a JS object
+//
+//
+//
+// Algorithm:
+// - Look up n in lookup table as key
+//   - If corresponding value exists (is not undefined), return it
+//   - Else: return fibonacci(n - 1) + fibonacci(n - 2)
+
+function fibonacci(n) {
+  var result;
+
+  var lookup = {
+    1: 1,
+    2: 1,
+  };
+
+  if (lookup[n]) {
+    return lookup[n]
+  } else {
+    lookup[n]= fibonacci(n - 1) + fibonacci(n - 2)
+    return lookup[n]
+  }
+}
+
+console.log(fibonacci(1));   // 1
+console.log(fibonacci(2));   // 1
+console.log(fibonacci(3));   // 2
+console.log(fibonacci(4));   // 3
+console.log(fibonacci(5));   // 5
+console.log(fibonacci(12));  // 144
+console.log(fibonacci(20));  // 6765
