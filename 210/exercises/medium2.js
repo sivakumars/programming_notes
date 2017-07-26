@@ -303,43 +303,68 @@
 // - Iterate through array, comparing adjacent elements
 // - If an interation completes with no swaps, stop looping and return the array
 
-function bubbleSort(array) {
-  var swapped;
-  var temp;
+// function bubbleSort(array) {
+//   var temp;
+//
+//   do {
+//     var swapped = false;
+//     for (var i = 0; i < array.length; i++) {
+//       if (array[i] > array[i + 1]) {
+//         temp = array[i + 1];
+//         array[i + 1] = array[i];
+//         array[i] = temp;
+//         swapped = true;
+//       }
+//     }
+//   } while (swapped)
+//
+//   return array;
+// }
+//
+// var array = [5, 3];
+// bubbleSort(array);
+// console.log(array);     // [3, 5]
+//
+// array = [6, 2, 7, 1, 4]
+// bubbleSort(array);
+// console.log(array);     // [1, 2, 4, 6, 7]
+//
+// array = ['Sue', 'Pete', 'Alice', 'Tyler', 'Rachel', 'Kim', 'Bonnie'];
+// bubbleSort(array);
+// console.log(array);     // ['Alice', 'Bonnie', 'Kim', 'Pete', 'Rachel', 'Sue', 'Tyler']
 
-  do {
-    swapped = false;
-    for (var i = 0; i < array.length; i++) {
-      if (array[i] > array[i + 1]) {
-        var temp = array[i + 1];
-        array[i + 1] = array[i];
-        array[i] = temp;
-        swapped = true;
-      }
-    }
-  } while (swapped)
+// Word to Digit
+//
+// Input: sentence (string)
+// Output: sentence (string)
+// Requirements:
+// - return new string that contains original string replaced with numbers written as their word counterparts
+//
+// Algorithm:
+// - Iterate through array of possible regex matches:
+//   - For each string, create a regex
+//   - Replace that regex with its corresponding number
 
-  return array;
+function wordToDigit(sentence) {
+  NUMBERS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+
+  NUMBERS.forEach(function(numStr, index) {
+    var regex = new RegExp(numStr, 'g');
+    sentence = sentence.replace(regex, index);
+  });
+
+  return sentence;
 }
 
-var array = [5, 3];
-bubbleSort(array);
-console.log(array);     // [3, 5]
-
-array = [6, 2, 7, 1, 4]
-bubbleSort(array);
-console.log(array);     // [1, 2, 4, 6, 7]
-
-array = ['Sue', 'Pete', 'Alice', 'Tyler', 'Rachel', 'Kim', 'Bonnie'];
-bubbleSort(array);
-console.log(array);     // ['Alice', 'Bonnie', 'Kim', 'Pete', 'Rachel', 'Sue', 'Tyler']
-
+console.log(wordToDigit('Please call me at five five five one two three four. Thanks.'));
+//'Please call me at 5 5 5 1 2 3 4. Thanks.'
 
 // Improvements:
-// - no matches equals a null and length of null is undefined, not 0
+// - no regex matches returns null and length of null is undefined, not 0
 // - how to sort numbers in descending order
 // - didn't read problem carefully and list ALL requirements in detail
 // - Use Math.max and Math.min instead of sorting array
 // - Didn't pass args when calling helper function
 // - Used <0 instead of <= 0
 // - Didn't read JavaScript Date documentation closely
+// - Trying to code before flushing out algorithm and running test cases
