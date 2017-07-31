@@ -25,7 +25,7 @@
 
 
 function splice(array, startIndex, deleteCount) {
-  var arguments = Array.prototype.slice.call(arguments).slice(3);
+  var arguments = Array.prototype.slice.call(arguments).slwice(3);
   var arrayCopy = array.slice();
   array.length = 0;
   var removedValues = [];
